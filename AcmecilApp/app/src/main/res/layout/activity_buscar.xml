@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="100dp"
+    android:paddingTop="100dp"
+    android:paddingLeft="34dp"
+    android:paddingRight="34dp"
+    android:background="@color/colorPrimary"
+    tools:context=".Medicamentos.buscarActivity"
+    style="@style/Theme.AppCompat.NoActionBar">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="44dp"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/txtBusquedad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nombre del medicamento:" />
+
+        <SearchView
+            android:id="@+id/searchMedicamentos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+        </SearchView>
+
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="74dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <Spinner
+                android:id="@+id/spinnerMarca"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <Space
+                android:layout_width="109dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <Spinner
+                android:id="@+id/spinnerRadio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="28dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="135dp"
+                android:layout_height="38dp"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/buttonBuscar"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryDark"
+                android:text="Buscar" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="37dp" />
+
+        <ImageView
+            android:id="@+id/imgViewP1"
+            android:layout_width="match_parent"
+            android:layout_height="124dp"
+            app:srcCompat="@color/colorPrimary" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="37dp" />
+
+        <ImageView
+            android:id="@+id/imageViewP2"
+            android:layout_width="match_parent"
+            android:layout_height="103dp"
+            app:srcCompat="@color/colorPrimary" />
+
+
+    </LinearLayout>
+</RelativeLayout>

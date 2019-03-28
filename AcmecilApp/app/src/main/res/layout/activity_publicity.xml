@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".Medicamentos.registerMedicationActivity"
+    tools:context=".Medicamentos.PublicityActivity"
     style="@style/Theme.AppCompat.NoActionBar">
 
 
@@ -74,12 +74,14 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/btonCargar"
+            <Button
+                android:id="@+id/btnImage"
+                style="@style/Widget.AppCompat.Button.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:clickable="true"
-                android:src="@android:drawable/ic_input_add" />
+                android:layout_weight="1"
+                android:onClick="clickImage"
+                android:background="@android:drawable/ic_input_add" />
 
             <TextView
                 android:id="@+id/textView6"
@@ -108,6 +110,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimaryDark"
+            android:onClick="validarPublicidad"
             android:text="Confirmar" />
 
         <TextView
