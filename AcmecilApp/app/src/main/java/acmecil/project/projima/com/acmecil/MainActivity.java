@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onclick(View view) {
-        Intent ListSong = new Intent(getApplicationContext(), registerMedicationActivity.class);
+        Intent ListSong = new Intent(getApplicationContext(), buscarActivity.class);
         startActivity(ListSong);
     }
 }
