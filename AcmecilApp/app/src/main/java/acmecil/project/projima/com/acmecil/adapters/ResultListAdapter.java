@@ -51,6 +51,8 @@ public class ResultListAdapter extends RecyclerView.Adapter<ResultListAdapter.Ph
             }
         });
 
+        //Cambiar imagen
+
 
     }
 
