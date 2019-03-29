@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="4dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/pharmacylist_item_image"
+                    android:layout_width="126dp"
+                    android:layout_height="126dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_margin="15dp"
+                    android:src="@drawable/pharmacy_placeholder" />
+
+                <TextView
+                    android:id="@+id/pharmacylist_item_name"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:textStyle="bold"
+
+                    android:text="Farmacia X"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:id="@+id/pharmacylist_item_address"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/pharmacylist_item_name"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
+                    android:textSize="15sp"
+                    android:text="San Pedro, Montes de Oca"
+                    />
+
+                <TextView
+                    android:id="@+id/pharmacylist_item_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/pharmacylist_item_address"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
+                    android:textSize="15sp"
+                    android:text="Precio:"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:id="@+id/pharmacylist_item_price_placeholder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:text="500"
+                    android:layout_toEndOf="@id/pharmacylist_item_price"
+                    android:layout_below="@id/pharmacylist_item_address"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"/>
+
+                <ImageView
+                    android:id="@+id/pharmacylist_item_edit_price_imagebutton"
+                    android:layout_width="15sp"
+                    android:layout_height="15sp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+
+                    android:layout_toEndOf="@id/pharmacylist_item_price_placeholder"
+                    android:layout_below="@id/pharmacylist_item_address"
+                    android:src="@drawable/ic_edit_black_24dp" />
+
+                <ImageView
+                    android:id="@+id/pharmacylist_item_report_imagebutton"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_report_black_24dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@id/pharmacylist_item_price"
+                    android:tint="#9b9b9b"
+                    />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorAccent"
+                android:orientation="horizontal"
+                android:gravity="center"
+
+                >
+
+                <TextView
+                    android:id="@+id/pharmacylist_item_bottom_medicine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Medicamento X"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp"
+                    android:layout_margin="5dp"
+                    android:textStyle="bold"
+                    />
+
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</RelativeLayout>
