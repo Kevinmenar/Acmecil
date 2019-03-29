@@ -42,7 +42,7 @@ public class ResultListAdapter extends RecyclerView.Adapter<ResultListAdapter.Ph
                 //reportar precio
             }
         });
-
+        holder.medicineName.setText(list.get(position).getMedicineName());
         holder.editPrice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,7 +68,7 @@ public class ResultListAdapter extends RecyclerView.Adapter<ResultListAdapter.Ph
 
         TextView localName, localAdress, price, medicineName;
         ImageView localImage;
-        Button editPrice, reportPrice;
+        ImageView editPrice, reportPrice;
 
         public PharmacyViewHolder(@NonNull View itemView) {
             super(itemView);

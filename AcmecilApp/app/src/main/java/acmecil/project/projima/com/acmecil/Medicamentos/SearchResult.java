@@ -6,13 +6,15 @@ public class SearchResult {
     private String pharmacyAdress;
     private int price;
     private String imagePath;
+    private String medicineName;
 
 
-    public SearchResult(String pharmacyName, String pharmacyAdress, String imagePath, int price){
+    public SearchResult(String pharmacyName, String pharmacyAdress, String imagePath, String medicineName ,int price){
         this.imagePath = imagePath;
         this.pharmacyAdress =pharmacyAdress;
         this.price = price;
         this.pharmacyName = pharmacyName;
+        this.medicineName = medicineName;
     }
 
 
@@ -38,5 +40,13 @@ public class SearchResult {
 
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
+    }
+
+    public String getMedicineName() {
+        return medicineName;
+    }
+
+    public void setMedicineName(String medicineName) {
+        this.medicineName = medicineName;
     }
 }
