@@ -21,6 +21,8 @@ public class Controller {
         this.sessionRole = sessionRole;
     }
 
+
+
     public enum Role{
         ADMINISTRATOR, COMMON_USER;
     }
