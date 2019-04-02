@@ -115,12 +115,14 @@
 
         <Button
             android:id="@+id/btnIngresar"
-            style="@style/Widget.AppCompat.Button"
+            style="@style/Widget.AppCompat.Button.Small"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorAccent"
+            android:background="@color/colorPrimaryDark"
             android:onClick="validarMedicamento"
             android:text="Ingresar"
+            android:textColor="@color/colorPrimary"
+            android:textColorLink="@color/colorPrimaryDark"
             android:textSize="24sp" />
 
         <TextView
@@ -132,8 +134,9 @@
             android:id="@+id/btonCancelar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorAccent"
+            android:background="@color/colorPrimaryDark"
             android:text="Cancelar"
+            android:textColor="@color/colorPrimary"
             android:textSize="24sp" />
 
 

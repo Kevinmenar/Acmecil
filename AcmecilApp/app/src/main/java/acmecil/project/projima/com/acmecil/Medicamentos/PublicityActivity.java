@@ -72,4 +72,11 @@ public class PublicityActivity extends AppCompatActivity {
         }
 
     }
+
+    public void cancel(View view) {
+        txt_nameOwner.setText("");
+        txt_url.setText("");
+        txt_medication.setText("");
+        txt_description.setText("");
+    }
 }
