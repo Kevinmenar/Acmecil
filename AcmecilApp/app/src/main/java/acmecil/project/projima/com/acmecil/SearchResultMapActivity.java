@@ -52,7 +52,7 @@ public class SearchResultMapActivity extends AppCompatActivity {
         //Recupera la lista de resultados
         List<SearchResult> testlist = new ArrayList<>();
         for (int i = 0; i < 20 ; i++) {
-            testlist.add(new SearchResult(String.format("Farmacia %d", i),String.format("Direccion %d", i), "j","Ibuprofeno - 20mg" ,(int) Math.pow(2,i)-1));
+            testlist.add(new SearchResult(String.format("Farmacia %02d", i),String.format("Direccion %02d", i), "j","Ibuprofeno - 20mg" ,(int) Math.pow(2,i)-1));
         }
 
         ResultListAdapter adapter = new ResultListAdapter(testlist);
