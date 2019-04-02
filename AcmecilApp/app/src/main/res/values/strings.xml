@@ -1,4 +1,7 @@
 <resources>
-    <string name="app_name">Acmecil</string>
-    <string name="appname">Acmecil</string>
+    <string name="app_name">LogIn</string>
+    <string name="prueba">Prueba</string>
+    <color name="white">#FFFFFF</color>
+    <color name="deepskyblue">#00BFFF</color>
+    <color name="mediumblue">#0000CD</color>
 </resources>
