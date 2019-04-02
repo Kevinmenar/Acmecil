@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import java.util.ResourceBundle;
+
 import acmecil.project.projima.com.acmecil.R;
 
 import acmecil.project.projima.com.acmecil.Medicamentos.*;
@@ -31,6 +33,9 @@ public class MainActivity extends AbsRuntimePermission {
 
     @Override
     public void onPermissionsGranted(int requestCode) {
+        if(requestCode == PERMISSIONS_REQUEST_MAP){
+            Controller.getInstance().setLocationAvailable(true);
+        }
         startActivity(new Intent(getApplicationContext(), SearchResultMapActivity.class));
     }
 

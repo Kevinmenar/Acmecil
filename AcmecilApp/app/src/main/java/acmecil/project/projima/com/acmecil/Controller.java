@@ -6,6 +6,7 @@ public class Controller {
 
     private Role sessionRole;
     private MedicineDTO medicineDTO;
+    private Boolean isLocationAvailable;
 
     private static final Controller ourInstance = new Controller();
 
@@ -42,6 +43,10 @@ public class Controller {
     }
 
     public MedicineDTO getMedicineDTO(){ return medicineDTO; }
+
+    public void setLocationAvailable(boolean b) {
+        isLocationAvailable = b;
+    }
 
     public enum Role{
         ADMINISTRATOR, COMMON_USER;

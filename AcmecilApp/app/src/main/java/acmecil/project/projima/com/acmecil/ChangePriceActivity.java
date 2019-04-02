@@ -31,14 +31,14 @@ public class ChangePriceActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         titleView.setText(bundle.getString("medicineName"));
-        lastPriceTextView.setText(bundle.getInt("lastPrice"));
+        lastPriceTextView.setText(String.format("¢ %d",bundle.getInt("lastPrice")));
         pharmacyName.setText(bundle.getString("pharmacyName"));
         switch (Controller.getInstance().getSessionRole()){
-            case COMMON_USER:{
+            case ADMINISTRATOR:{
                 confirmButton.setText("Confirmar");
                 break;
             }
-            case ADMINISTRATOR:{
+            case COMMON_USER:{
                 confirmButton.setText("Reportar");
                 break;
             }
