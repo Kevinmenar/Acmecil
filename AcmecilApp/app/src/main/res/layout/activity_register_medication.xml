@@ -137,6 +137,7 @@
             android:background="@color/colorPrimaryDark"
             android:text="Cancelar"
             android:textColor="@color/colorPrimary"
+            android:onClick="cancel"
             android:textSize="24sp" />
 
 

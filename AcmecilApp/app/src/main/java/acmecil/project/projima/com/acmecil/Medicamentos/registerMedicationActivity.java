@@ -23,6 +23,7 @@ public class registerMedicationActivity extends AppCompatActivity {
     private  RadioButton dolares;
     private TextView result;
     private String titulo = "Ingresar medicamento";
+    private Button cancelM;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,7 @@ public class registerMedicationActivity extends AppCompatActivity {
         enterM =(Button) findViewById(R.id.btnIngresar);
         colones=(RadioButton) findViewById(R.id.rdoBtonColones);
         dolares= (RadioButton) findViewById(R.id.rdoBtonDolares);
+        cancelM=(Button) findViewById(R.id.btonCancelar);
 
 
     }
@@ -63,5 +65,11 @@ public class registerMedicationActivity extends AppCompatActivity {
     //Agregar a la base de datos el medicamento
     public void inscribirMedicamento(String pname, String pmarca, Float pcost, Boolean pcolones, Boolean pdolares){
 
+    }
+
+    public void cancel(View view) {
+        nameM.setText("");
+        marcaM.setText("");
+        costM.setText("");
     }
 }

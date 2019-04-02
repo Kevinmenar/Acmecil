@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/pharmacylist_item_image"
+                    android:id="@+id/search_list_item_image"
                     android:layout_width="600dp"
                     android:layout_height="126dp"
                     android:layout_alignParentEnd="true"

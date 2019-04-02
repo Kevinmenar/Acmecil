@@ -6,6 +6,7 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -18,6 +19,8 @@ public class PublicityActivity extends AppCompatActivity {
     private EditText txt_medication;
     private EditText txt_url;
     private Uri path;
+    private Button btn_confirmar;
+    private Button btn_cancel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +30,8 @@ public class PublicityActivity extends AppCompatActivity {
         txt_description =(EditText) findViewById(R.id.txtDescription);
         txt_medication =(EditText) findViewById(R.id.txtMedication);
         txt_url=(EditText) findViewById(R.id.txtUrl);
+        btn_confirmar=(Button) findViewById(R.id.btonConfirma);
+        btn_cancel=(Button) findViewById(R.id.btonCancelar);
 
     }
     public void validarPublicidad(View v){
