@@ -2,6 +2,8 @@ package acmecil.project.projima.com.acmecil.Medicamentos;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -9,7 +11,12 @@ import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import acmecil.project.projima.com.acmecil.R;
+import acmecil.project.projima.com.acmecil.adapters.PublicityAdapter;
+
 
 public class buscarActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     String vMarca;
@@ -36,6 +43,20 @@ public class buscarActivity extends AppCompatActivity implements AdapterView.OnI
         spn_marca.setAdapter(aMarca);
         spn_radio.setAdapter(aRadio);
         searchMedication.setQueryHint("Nombre del medicamento");
+        //Lista de resultados???
+        List<ImageResult> testlist = new ArrayList<>();
+        for (int i = 0; i < 20 ; i++) {
+            testlist.add(new ImageResult(String.format("j %d", i)));
+        }
+
+        PublicityAdapter adapter = new PublicityAdapter(testlist);
+        RecyclerView recyclerView = findViewById(R.id.search_results_recycler_view);
+
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
+
+        recyclerView.setAdapter(adapter);
         searchMedication.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
