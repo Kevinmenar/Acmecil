@@ -22,11 +22,13 @@ public class registerMedicationActivity extends AppCompatActivity {
     private RadioButton colones;
     private  RadioButton dolares;
     private TextView result;
+    private String titulo = "Ingresar medicamento";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_medication);
+        this.setTitle(titulo);
 
         nameM = (EditText) findViewById(R.id.txtNameMedication);
         marcaM = (EditText) findViewById(R.id.txtMarca);
