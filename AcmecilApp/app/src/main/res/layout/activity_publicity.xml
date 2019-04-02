@@ -2,36 +2,25 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/Theme.AppCompat.NoActionBar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background"
-    tools:context=".Medicamentos.PublicityActivity">
+    android:paddingBottom="100dp"
+    android:paddingTop="100dp"
+    android:paddingLeft="34dp"
+    android:paddingRight="34dp"
+    android:background="@color/colorPrimary"
+    tools:context=".Medicamentos.PublicityActivity"
+    style="@style/Theme.AppCompat.NoActionBar">
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="500dp"
-            android:layout_height="100dp"
-            android:background="@drawable/gradient_background"
-            android:text="
-                      Añadir publicidad"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/colorPrimaryDark" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="500dp"
-        android:layout_height="600dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="30dp"
         android:orientation="vertical">
+
 
 
         <EditText
@@ -40,13 +29,12 @@
             android:background="@drawable/border"
             android:hint="Nombre del propietario"
             android:inputType="textPersonName" />
-
         <TextView
             android:id="@+id/txtViewMarca"
-            style="@style/textView_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="" />
+            android:text=""
+            style="@style/textView_style"/>
 
         <EditText
             android:id="@+id/txtDescription"
@@ -96,8 +84,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@android:drawable/ic_input_add"
-                android:onClick="clickImage" />
+                android:onClick="clickImage"
+                android:background="@android:drawable/ic_input_add" />
 
             <TextView
                 android:id="@+id/textView6"
@@ -112,45 +100,35 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_weight="2"
-                android:text="Añadir multimedia"
-                android:textSize="18dp" />
+                android:textSize="18dp"
+                android:text="Añadir multimedia" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/textView7"
             android:layout_width="match_parent"
-            android:layout_height="51dp" />
+            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/btonConfirma"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="120dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/colorPrimaryDark"
             android:onClick="validarPublicidad"
-            android:text="Confirmar"
-            android:textColor="@color/colorPrimary"
-            android:textSize="18sp"
-            android:textStyle="normal" />
+            android:text="Confirmar" />
 
         <TextView
             android:id="@+id/textView8"
             android:layout_width="match_parent"
-            android:layout_height="36dp" />
+            android:layout_height="wrap_content" />
 
 
         <Button
             android:id="@+id/btonCancelar"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="120dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/colorPrimaryDark"
-            android:onClick="cancel"
-            android:text="Cancelar"
-            android:textColor="@color/colorPrimary"
-            android:textSize="18sp" />
+            android:text="Cancelar" />
 
 
     </LinearLayout>
