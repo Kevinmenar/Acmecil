@@ -55,7 +55,7 @@ public class SearchResultMapActivity extends AppCompatActivity {
             testlist.add(new SearchResult(String.format("Farmacia %02d", i),String.format("Direccion %02d", i), "j","Ibuprofeno - 20mg" ,(int) Math.pow(2,i)-1));
         }
 
-        ResultListAdapter adapter = new ResultListAdapter(testlist);
+        ResultListAdapter adapter = new ResultListAdapter(testlist, this);
         RecyclerView recyclerView = findViewById(R.id.search_results_recycler_view);
 
 
