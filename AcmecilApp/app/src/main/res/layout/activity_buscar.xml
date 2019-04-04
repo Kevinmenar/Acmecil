@@ -43,13 +43,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
-                <SearchView
-                    android:id="@+id/searchMedicamentos"
+
+                <EditText
+                    android:id="@+id/editTxtBusqueda"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/mtrl_bottomappbar_fabOffsetEndMode">
-
-                </SearchView>
-
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="text" />
 
                 <TextView
                     android:id="@+id/textView5"
@@ -95,7 +95,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="150dp"
-                    android:background="@drawable/gradient_background"
+                    android:background="@color/colorPrimaryDark"
                     android:onClick="search"
                     android:text="Buscar"
                     android:textColor="@color/colorPrimary" />

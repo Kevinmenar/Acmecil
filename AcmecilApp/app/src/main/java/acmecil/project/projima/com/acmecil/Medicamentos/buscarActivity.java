@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -19,13 +20,13 @@ import acmecil.project.projima.com.acmecil.adapters.PublicityAdapter;
 
 
 public class buscarActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
-    String vMarca;
+    String vMarca, vMedication;
     int vRadio;
     Spinner spn_marca;
     Spinner spn_radio;
     ArrayAdapter<String>  aMarca;
     ArrayAdapter<Integer> aRadio;
-    SearchView searchMedication;
+    EditText txtMedication;
     Integer [] arrayRadio = new Integer[] {5, 15, 25, 35};
     String [] arrayMarca;
     @Override
@@ -35,14 +36,15 @@ public class buscarActivity extends AppCompatActivity implements AdapterView.OnI
         arrayMarca = getArrayMarca();
         spn_marca = (Spinner) findViewById(R.id.spinnerMarca);
         spn_radio = (Spinner) findViewById(R.id.spinnerRadio);
-        searchMedication = (SearchView) findViewById(R.id.searchMedicamentos);
+        txtMedication = (EditText) findViewById(R.id.editTxtBusqueda);
         spn_radio.setOnItemSelectedListener(this);
         spn_marca.setOnItemSelectedListener(this);
+
         aMarca = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arrayMarca);
         aRadio= new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, arrayRadio);
         spn_marca.setAdapter(aMarca);
         spn_radio.setAdapter(aRadio);
-        searchMedication.setQueryHint("Nombre del medicamento");
+
         //Lista de resultados???
         List<ImageResult> testlist = new ArrayList<>();
         for (int i = 0; i < 20 ; i++) {
@@ -57,19 +59,7 @@ public class buscarActivity extends AppCompatActivity implements AdapterView.OnI
 
 
         recyclerView.setAdapter(adapter);
-        searchMedication.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                Toast.makeText(getBaseContext(),query, Toast.LENGTH_LONG).show();
-                return false;
-            }
 
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                Toast.makeText(getBaseContext(), newText, Toast.LENGTH_LONG).show();
-                return false;
-            }
-        });
 
     }
     //Función que obtiene las marcas de los medicamentos existentes
@@ -93,7 +83,11 @@ public class buscarActivity extends AppCompatActivity implements AdapterView.OnI
     public void search(View view) {
         vMarca = spn_marca.getSelectedItem().toString();
         vRadio = Integer.valueOf(spn_radio.getSelectedItem().toString());
+        vMedication = txtMedication.getText().toString();
 
+    }
+    //Función que llama al layout con los resultados del medicamento a buscar?????
+    public void searchMedication(String pMarca, String pRadio, String pMedication){
 
     }
 }
