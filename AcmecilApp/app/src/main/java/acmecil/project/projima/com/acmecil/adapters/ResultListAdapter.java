@@ -1,5 +1,7 @@
 package acmecil.project.projima.com.acmecil.adapters;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,16 +13,23 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import acmecil.project.projima.com.acmecil.ChangePriceActivity;
+import acmecil.project.projima.com.acmecil.Controller;
 import acmecil.project.projima.com.acmecil.Medicamentos.SearchResult;
 import acmecil.project.projima.com.acmecil.R;
+
 
 
 public class ResultListAdapter extends RecyclerView.Adapter<ResultListAdapter.PharmacyViewHolder> {
 
     private View v;
+    private Context context;
     List<SearchResult> list;
 
-    public ResultListAdapter(List<SearchResult> list){this.list = list;}
+    public ResultListAdapter(List<SearchResult> list, Context context){
+        this.list = list;
+        this.context = context;
+    }
 
 
     @NonNull
@@ -31,29 +40,42 @@ public class ResultListAdapter extends RecyclerView.Adapter<ResultListAdapter.Ph
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PharmacyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PharmacyViewHolder holder, final int position) {
         SearchResult currentResult = list.get(position);
         holder.localName.setText(currentResult.getPharmacyName());
         holder.localAdress.setText(currentResult.getPharmacyAdress());
-        holder.price.setText(Integer.toString(currentResult.getPrice()));
-        holder.reportPrice.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //reportar precio
-            }
-        });
+        holder.price.setText(String.format("%d",currentResult.getPrice()));
         holder.medicineName.setText(list.get(position).getMedicineName());
-        holder.editPrice.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //editar precio
-                //Si es cliente, esta opcion no debería de aparecer
+        switch (Controller.getInstance().getSessionRole()){
+            case COMMON_USER:
+            {
+                holder.editPrice.setVisibility(View.GONE);
+                holder.reportPrice.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(context, ChangePriceActivity.class);
+                        i.putExtra("lastPrice", list.get(position).getPrice());
+                        i.putExtra("medicineName",list.get(position).getMedicineName());
+                        i.putExtra("pharmacyName", list.get(position).getPharmacyName());
+                        context.startActivity(i);
+                        //TODO: Abrir Dialog con EditText
+                    }
+                });
+                break;
             }
-        });
-
+            case ADMINISTRATOR:
+            {
+                holder.reportPrice.setVisibility(View.GONE);
+                holder.editPrice.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //TODO: Abrir Dialog con EditTex
+                    }
+                });
+                break;
+            }
+        }
         //Cambiar imagen
-
-
     }
 
 

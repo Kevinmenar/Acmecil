@@ -4,9 +4,8 @@
     package="acmecil.project.projima.com.acmecil">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -16,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".SearchResultMapActivity"></activity>
+        <activity android:name=".ChangePriceActivity"></activity>
+        <activity android:name=".SearchResultMapActivity" />
         <activity android:name=".Medicamentos.buscarActivity" />
         <activity android:name=".Medicamentos.PublicityActivity" />
         <activity android:name=".Medicamentos.registerMedicationActivity" />

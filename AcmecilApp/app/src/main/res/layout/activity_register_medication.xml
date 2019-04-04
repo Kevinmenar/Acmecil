@@ -2,20 +2,33 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Theme.AppCompat.NoActionBar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="100dp"
-    android:paddingTop="100dp"
-    android:paddingLeft="34dp"
-    android:paddingRight="34dp"
-    android:background="@color/colorPrimary"
-    tools:context=".Medicamentos.registerMedicationActivity"
-    style="@style/Theme.AppCompat.NoActionBar">
+    android:background="@drawable/gradient_background"
+    android:paddingBottom="10dp"
+    tools:context=".Medicamentos.registerMedicationActivity">
 
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="500dp"
+            android:layout_height="100dp"
+            android:background="@drawable/gradient_background"
+            android:text="
+                 Datos del medicamento"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/colorPrimaryDark" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="500dp"
+        android:layout_height="550dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="44dp"
@@ -26,7 +39,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nombre del medicamento:"
-            style="@style/textView_style"/>
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@android:color/black" />
 
 
         <EditText
@@ -35,12 +49,14 @@
             android:background="@drawable/border"
             android:hint=""
             android:inputType="textPersonName" />
+
         <TextView
             android:id="@+id/txtViewMarca"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Marca:"
-            style="@style/textView_style"/>
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@android:color/black" />
 
         <EditText
             android:id="@+id/txtMarca"
@@ -51,14 +67,18 @@
 
         <RadioGroup
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content">
 
             <RadioButton
                 android:id="@+id/rdoBtonColones"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Colones" />
+                android:text="Colones"
+                android:textColor="@color/colorPrimaryDark"
+                android:textColorLink="@color/colorPrimaryDark"
+                android:textSize="24sp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -69,7 +89,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Dolares" />
+                android:text="Dolares"
+                android:textSize="24sp" />
         </RadioGroup>
 
         <TextView
@@ -77,7 +98,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Precio:"
-            style="@style/textView_style"/>
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@android:color/black" />
 
         <EditText
             android:id="@+id/txtPrecio"
@@ -86,14 +108,21 @@
             android:hint=""
             android:inputType="number" />
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="66dp" />
+
         <Button
             android:id="@+id/btnIngresar"
-            style="@style/Widget.AppCompat.Button"
+            style="@style/Widget.AppCompat.Button.Small"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimaryDark"
             android:onClick="validarMedicamento"
-            android:text="Ingresar" />
+            android:text="Ingresar"
+            android:textColor="@color/colorPrimary"
+            android:textColorLink="@color/colorPrimaryDark"
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/textView2"
@@ -105,7 +134,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimaryDark"
-            android:text="Cancelar" />
+            android:text="Cancelar"
+            android:textColor="@color/colorPrimary"
+            android:onClick="cancel"
+            android:textSize="24sp" />
 
 
     </LinearLayout>
