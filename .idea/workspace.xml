@@ -9,7 +9,13 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="607033e7-f6ba-4dc8-ae92-d539cbcade12" name="Default Changelist" comment="" />
+    <list default="true" id="607033e7-f6ba-4dc8-ae92-d539cbcade12" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/gen/Inscribirse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AcmecilApp/app/src/main/java/acmecil/project/projima/com/acmecil/login/Inscribirse.java" beforeDir="false" afterPath="$PROJECT_DIR$/AcmecilApp/app/src/main/java/acmecil/project/projima/com/acmecil/login/Inscribirse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AcmecilApp/app/src/main/res/drawable/gradient.xml" beforeDir="false" afterPath="$PROJECT_DIR$/AcmecilApp/app/src/main/res/drawable/gradient.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AcmecilApp/app/src/main/res/layout/activity_inscribirse.xml" beforeDir="false" afterPath="$PROJECT_DIR$/AcmecilApp/app/src/main/res/layout/activity_inscribirse.xml" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,29 +35,32 @@
           <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.17" value="1" />
           <entry key="project.open.time.2" value="1" />
+          <entry key="project.open.time.28" value="1" />
           <entry key="project.open.time.5" value="2" />
-          <entry key="project.opened" value="6" />
+          <entry key="project.opened" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="9" />
-          <entry key="xml" value="6" />
+          <entry key="java" value="11" />
+          <entry key="xml" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="9" />
-          <entry key="XML" value="6" />
+          <entry key="JAVA" value="11" />
+          <entry key="XML" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
+          <entry key="java" value="2" />
           <entry key="xml" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
+          <entry key="JAVA" value="2" />
           <entry key="XML" value="4" />
         </counts>
       </usages-collector>
@@ -71,38 +80,74 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AcmecilApp/app/src/main/java/acmecil/project/projima/com/acmecil/login/LogInScreen.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="30" lean-forward="true" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
+            <state relative-caret-position="-78">
+              <caret line="6" column="30" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AcmecilApp/app/src/main/res/layout/activity_main.xml">
-          <provider editor-type-id="android-designer2" />
-          <provider selected="true" editor-type-id="text-editor">
+          <provider selected="true" editor-type-id="android-designer2" />
+          <provider editor-type-id="text-editor">
             <state relative-caret-position="85">
-              <caret line="5" column="39" lean-forward="true" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
+              <caret line="5" column="39" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AcmecilApp/app/src/main/java/acmecil/project/projima/com/acmecil/login/Inscribirse.java">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" selection-start-line="1" selection-end-line="8" selection-end-column="28" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AcmecilApp/app/src/main/res/layout/activity_inscribirse.xml">
           <provider editor-type-id="android-designer2" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="39" lean-forward="true" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
+            <state relative-caret-position="119">
+              <caret line="7" column="23" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/gen/Inscribirse.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="30" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
+              <folding>
+                <element signature="e#1846#1847#0" expanded="true" />
+                <element signature="e#1886#1887#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/AcmecilApp/app/src/main/res/drawable/gradient.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="8" lean-forward="true" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="ROOT_SYNC" value="DONT_SYNC" />
@@ -111,15 +156,18 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/AcmecilApp/app/src/main/res/drawable/gradient.xml" />
         <option value="$PROJECT_DIR$/AcmecilApp/app/src/main/res/layout/activity_inscribirse.xml" />
+        <option value="$PROJECT_DIR$/AcmecilApp/app/src/main/java/acmecil/project/projima/com/acmecil/login/Inscribirse.java" />
+        <option value="$PROJECT_DIR$/gen/Inscribirse.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1912" />
+    <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="784" />
+    <option name="width" value="1936" />
+    <option name="height" value="1096" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -127,6 +175,8 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -271,34 +321,12 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="res" type="462c0819:PsiDirectoryNode" />
-              <item name="layout" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Acmecil" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Acmecil" type="462c0819:PsiDirectoryNode" />
-              <item name="AcmecilApp" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="res" type="462c0819:PsiDirectoryNode" />
-              <item name="mipmap-xhdpi" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Acmecil" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Acmecil" type="462c0819:PsiDirectoryNode" />
-              <item name="AcmecilApp" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="res" type="462c0819:PsiDirectoryNode" />
-              <item name="values" type="462c0819:PsiDirectoryNode" />
+              <item name="drawable-v24" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -307,11 +335,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\juanj\Desktop\ProyectAndroidStudio\Acmecil\AcmecilApp\app\src\main\res\drawable" />
+      <recent name="C:\Users\juanj\Desktop\ProyectAndroidStudio\Acmecil\AcmecilApp\app\src\main\res\drawable-v24" />
+      <recent name="C:\Users\juanj\Desktop\ProyectAndroidStudio\Acmecil\AcmecilApp\app\src\main\res" />
       <recent name="C:\Users\juanj\Desktop\ProyectAndroidStudio\Acmecil\AcmecilApp\app\src\main\res\values" />
       <recent name="C:\Users\juanj\Desktop\ProyectAndroidStudio\Acmecil\AcmecilApp\app\src\main\res\mipmap-xhdpi" />
-      <recent name="C:\Users\juanj\Desktop\ProyectAndroidStudio\Acmecil\AcmecilApp\app\src\main\res\layout" />
-      <recent name="C:\Users\juanj\Desktop\ProyectAndroidStudio\Acmecil\AcmecilApp\app\src\main\java\acmecil\project\projima\com\acmecil\login" />
-      <recent name="C:\Users\juanj\Desktop\ProyectAndroidStudio\Acmecil\AcmecilApp\app\src\main\res\drawable" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -383,26 +411,27 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1382" height="784" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.42813918" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.30170575" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Designer" order="4" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info id="Build Variants" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Run" />
-      <window_info anchor="bottom" id="Find" />
-      <window_info anchor="bottom" id="Debug" />
       <window_info anchor="bottom" id="Version Control" order="0" sideWeight="0.49946696" weight="0.3290735" />
       <window_info anchor="bottom" id="TODO" order="1" weight="0.3290735" />
       <window_info anchor="bottom" id="Terminal" order="2" weight="0.3290735" />
-      <window_info active="true" anchor="bottom" id="Event Log" order="3" sideWeight="0.50075644" side_tool="true" visible="true" weight="0.49282297" />
+      <window_info anchor="bottom" id="Event Log" order="3" sideWeight="0.5010661" side_tool="true" weight="0.49139786" />
       <window_info active="true" anchor="bottom" id="Build" order="4" visible="true" weight="0.32854864" />
-      <window_info anchor="bottom" id="Logcat" order="5" sideWeight="0.49924356" visible="true" weight="0.49282297" />
+      <window_info anchor="bottom" id="Logcat" order="5" sideWeight="0.4989339" weight="0.3290735" />
       <window_info anchor="bottom" id="Android Profiler" order="6" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run" order="7" />
+      <window_info anchor="bottom" id="Debug" order="8" />
+      <window_info anchor="bottom" id="Find" order="9" />
       <window_info anchor="right" id="Capture Analysis" order="0" />
       <window_info anchor="right" id="Gradle" order="1" />
       <window_info anchor="right" id="Theme Preview" order="2" />
@@ -433,19 +462,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AcmecilApp/app/src/main/res/drawable/gradient.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AcmecilApp/app/src/main/java/acmecil/project/projima/com/acmecil/login/LogInActivity.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/AcmecilApp/app/src/main/java/acmecil/project/projima/com/acmecil/login/RegisterActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" selection-start-line="15" selection-end-line="15" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -456,29 +476,60 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AcmecilApp/app/src/main/java/acmecil/project/projima/com/acmecil/login/LogInScreen.java">
+    <entry file="file://$PROJECT_DIR$/AcmecilApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AcmecilApp/app/src/main/res/drawable/gradient.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="30" lean-forward="true" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
+        <state relative-caret-position="119">
+          <caret line="7" column="8" lean-forward="true" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AcmecilApp/app/src/main/java/acmecil/project/projima/com/acmecil/login/LogInActivity.java">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/AcmecilApp/app/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
         <state relative-caret-position="85">
-          <caret line="5" column="39" lean-forward="true" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
+          <caret line="5" column="39" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AcmecilApp/app/src/main/java/acmecil/project/projima/com/acmecil/login/Inscribirse.java">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/AcmecilApp/app/src/main/java/acmecil/project/projima/com/acmecil/login/LogInScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-78">
+          <caret line="6" column="30" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/AcmecilApp/app/src/main/res/layout/activity_inscribirse.xml">
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="39" lean-forward="true" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
+        <state relative-caret-position="119">
+          <caret line="7" column="23" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AcmecilApp/app/src/main/java/acmecil/project/projima/com/acmecil/login/Inscribirse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" selection-start-line="1" selection-end-line="8" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gen/Inscribirse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="30" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
+          <folding>
+            <element signature="e#1846#1847#0" expanded="true" />
+            <element signature="e#1886#1887#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
