@@ -86,7 +86,7 @@ public class buscarActivity extends AppCompatActivity implements AdapterView.OnI
         vMedication = txtMedication.getText().toString();
 
     }
-    //Función que llama al layout con los resultados del medicamento a buscar?????
+    //Función que llama al layout con los resultados del medicamento a buscar????
     public void searchMedication(String pMarca, String pRadio, String pMedication){
 
     }
