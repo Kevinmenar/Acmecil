@@ -11,6 +11,9 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import acmecil.project.projima.com.acmecil.R;
 import acmecil.project.projima.com.acmecil.model.Medicamento;
 
@@ -70,9 +73,10 @@ public class registerMedicationActivity extends AppCompatActivity {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference();
 
-        DatabaseReference postsRef = ref.child("Pharmacy").child(pIdFarmacia).child("Medicamentos");
+        DatabaseReference postsRef = ref.child("Medicamentos");
         DatabaseReference newPostRef = postsRef.push();
-        newPostRef.setValue(new Medicamento(pname, pmarca, pTipoMoneda, pcost));
+        newPostRef.setValue(new Medicamento(pname, pmarca, pTipoMoneda, pcost, pIdFarmacia, "False"));
+
     }
 
 

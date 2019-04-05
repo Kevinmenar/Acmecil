@@ -5,11 +5,15 @@ public class Medicamento {
     public String marca;
     public String moneda;
     public float price;
+    public String idFarmacia;
+    public String state;
 
-    public Medicamento (String pNombre, String pMarca, String pMoneda, float pPrice) {
+    public Medicamento (String pNombre, String pMarca, String pMoneda, float pPrice, String pIdFarmacia, String pState) {
         this.nombre = pNombre;
         this.marca = pMarca;
         this.moneda = pMoneda;
         this.price = pPrice;
+        this.idFarmacia = pIdFarmacia;
+        this.state = pState;
     }
 }

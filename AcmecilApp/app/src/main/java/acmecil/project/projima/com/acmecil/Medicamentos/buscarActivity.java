@@ -1,5 +1,6 @@
 package acmecil.project.projima.com.acmecil.Medicamentos;
 
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,7 +22,9 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import acmecil.project.projima.com.acmecil.R;
 import acmecil.project.projima.com.acmecil.adapters.PublicityAdapter;
@@ -55,7 +58,7 @@ public class buscarActivity extends AppCompatActivity implements AdapterView.OnI
         spn_marca.setAdapter(aMarca);
         spn_radio.setAdapter(aRadio);
 
-        searchMedication("sdfasdf", "dfasfads", "Canesten");
+        searchMedication("sdfasdf", 10, "Canesten", 9.5613377, -84.0452666);
 
         //Lista de resultados???
         List<ImageResult> testlist = new ArrayList<>();
@@ -104,10 +107,26 @@ public class buscarActivity extends AppCompatActivity implements AdapterView.OnI
         }
 
     }
+
+    public double distance(double lat1, double lat2, double lon1, double lon2) {
+
+        final int R = 6371; // Radius of the earth
+
+        double latDistance = Math.toRadians(lat2 - lat1);
+        double lonDistance = Math.toRadians(lon2 - lon1);
+        double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+                + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2))
+                * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        double distance = R * c * 1000; // convert to meters
+
+        return distance;
+    }
+
     //Función que llama al layout con los resultados del medicamento a buscar????
-    public void searchMedication(String pMarca, String pRadio, String pMedication){
-        DatabaseReference QueryAssociazioni = FirebaseDatabase.getInstance().getReference("Pharmacy");
-        Query zonesQuery = QueryAssociazioni.orderByChild("nombre").equalTo(pMedication);
+    public void searchMedication(final String pMarca, double pRadio, String pMedication, final double pLatitud, final double pLongitud){
+        final DatabaseReference QueryAssociazioni = FirebaseDatabase.getInstance().getReference();
+        Query zonesQuery = QueryAssociazioni.child("Medicamentos").orderByChild("nombre").equalTo(pMedication);
 
         zonesQuery.addValueEventListener(new ValueEventListener() {
             @Override
@@ -117,6 +136,38 @@ public class buscarActivity extends AppCompatActivity implements AdapterView.OnI
                 for (DataSnapshot zoneSnapshot: dataSnapshot.getChildren()) {
                     System.out.println("The value is: ");
                     Log.i(TAG, zoneSnapshot.child("nombre").getValue(String.class));
+
+                    Map<String, Object> valuesMap = (HashMap<String, Object>) dataSnapshot.getValue();
+
+                    // Get push id value.
+                    String marca = (String) valuesMap.get("marca");
+                    if (marca == pMarca) {
+                        String keyIdFarmacia = (String) valuesMap.get("idFarmacia");
+                        Query Famacias = QueryAssociazioni.child("Medicamentos").child(keyIdFarmacia);
+
+                        Famacias.addValueEventListener(new ValueEventListener() {
+
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                for (DataSnapshot zoneSnapshot: dataSnapshot.getChildren()) {
+                                    Map<String, Object> valuesMap = (HashMap<String, Object>) dataSnapshot.getValue();
+
+                                    double latitud = (double) valuesMap.get("latitud");
+                                    double longitud = (double) valuesMap.get("longitud");
+
+                                    double distance = distance(pLatitud, latitud, pLongitud, longitud);
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+
+
+
                 }
             }
 
