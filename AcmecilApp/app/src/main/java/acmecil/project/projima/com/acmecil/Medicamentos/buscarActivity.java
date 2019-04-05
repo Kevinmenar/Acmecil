@@ -84,6 +84,10 @@ public class buscarActivity extends AppCompatActivity implements AdapterView.OnI
         vMarca = spn_marca.getSelectedItem().toString();
         vRadio = Integer.valueOf(spn_radio.getSelectedItem().toString());
         vMedication = txtMedication.getText().toString();
+        if(vMarca.isEmpty()||spn_radio.getSelectedItem().toString().isEmpty()||vMedication.isEmpty()){
+            final String text = "Todos los campos deben contener la información requerida";
+            Toast.makeText(this, text, Toast.LENGTH_LONG).show();
+        }
 
     }
     //Función que llama al layout con los resultados del medicamento a buscar????
