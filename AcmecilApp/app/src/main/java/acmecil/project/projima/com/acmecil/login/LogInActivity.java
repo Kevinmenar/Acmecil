@@ -39,6 +39,7 @@ public class LogInActivity extends AppCompatActivity {
                 //if( ed1.getText().toString().equals("admin") && ed2.getText().toString().equals("admin")) {
                 if(respuesta){
                     Toast.makeText(getApplicationContext(),"Redirecting...",Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(LogInActivity.this, MainActivity.class);
                 }else{
                     Toast.makeText(getApplicationContext(), "WrongCredentials",Toast.LENGTH_SHORT).show();
 
