@@ -29,6 +29,7 @@
         </activity>
         <activity android:name=".login.LogInActivity" />
         <activity android:name=".login.RegisterActivity" />
+        <activity android:name=".EliminarUsuario" />
     </application>
 
 </manifest>
