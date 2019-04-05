@@ -36,7 +36,7 @@
                     android:id="@+id/txtBusquedad"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Nombre del medicamento:"
+                    android:text=""
                     android:textAppearance="@style/TextAppearance.AppCompat.Button" />
 
                 <Space
@@ -48,8 +48,12 @@
                     android:id="@+id/editTxtBusqueda"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:ems="10"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:text="Nombre del medicamento"
+                    android:textColor="@android:color/tertiary_text_light"
+                    android:textSize="20dp" />
 
                 <TextView
                     android:id="@+id/textView5"
@@ -62,7 +66,7 @@
                     android:orientation="horizontal">
 
                     <Space
-                        android:layout_width="103dp"
+                        android:layout_width="85dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1" />
 
@@ -71,7 +75,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/mtrl_bottomappbar_fab_cradle_diameter"
                         android:layout_weight="1"
-                        android:popupBackground="@drawable/gradient_background" />
+                        android:popupBackground="@color/colorPrimary" />
 
                     <Space
                         android:layout_width="109dp"
@@ -83,18 +87,18 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/mtrl_bottomappbar_fab_cradle_diameter"
                         android:layout_weight="1"
-                        android:popupBackground="@drawable/gradient_background" />
+                        android:popupBackground="@color/colorPrimary" />
                 </LinearLayout>
 
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="54dp" />s
+                    android:layout_height="34dp" />s
 
                 <Button
                     android:id="@+id/buttonBuscar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="150dp"
+                    android:layout_gravity="center"
                     android:background="@color/colorPrimaryDark"
                     android:onClick="search"
                     android:text="Buscar"

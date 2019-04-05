@@ -36,11 +36,11 @@ public class MainActivity extends AbsRuntimePermission {
         if(requestCode == PERMISSIONS_REQUEST_MAP){
             Controller.getInstance().setLocationAvailable(true);
         }
-        startActivity(new Intent(getApplicationContext(), SearchResultMapActivity.class));
+       // startActivity(new Intent(getApplicationContext(), SearchResultMapActivity.class));
     }
 
     public void onclick(View view) {
-        Intent ListSong = new Intent(getApplicationContext(), buscarActivity.class);
+        Intent ListSong = new Intent(getApplicationContext(), PublicityActivity.class);
         startActivity(ListSong);
     }
 }
