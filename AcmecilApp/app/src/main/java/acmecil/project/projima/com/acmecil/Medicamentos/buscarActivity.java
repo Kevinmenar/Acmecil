@@ -4,12 +4,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,15 +28,17 @@ import acmecil.project.projima.com.acmecil.adapters.PublicityAdapter;
 
 
 public class buscarActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
-    String vMarca;
+    String vMarca, vMedication;
     int vRadio;
     Spinner spn_marca;
     Spinner spn_radio;
     ArrayAdapter<String>  aMarca;
     ArrayAdapter<Integer> aRadio;
-    SearchView searchMedication;
+    EditText txtMedication;
     Integer [] arrayRadio = new Integer[] {5, 15, 25, 35};
     String [] arrayMarca;
+    private static final String TAG = "buscarActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
@@ -35,14 +46,17 @@ public class buscarActivity extends AppCompatActivity implements AdapterView.OnI
         arrayMarca = getArrayMarca();
         spn_marca = (Spinner) findViewById(R.id.spinnerMarca);
         spn_radio = (Spinner) findViewById(R.id.spinnerRadio);
-        searchMedication = (SearchView) findViewById(R.id.searchMedicamentos);
+        txtMedication = (EditText) findViewById(R.id.editTxtBusqueda);
         spn_radio.setOnItemSelectedListener(this);
         spn_marca.setOnItemSelectedListener(this);
+
         aMarca = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arrayMarca);
         aRadio= new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, arrayRadio);
         spn_marca.setAdapter(aMarca);
         spn_radio.setAdapter(aRadio);
-        searchMedication.setQueryHint("Nombre del medicamento");
+
+        searchMedication("sdfasdf", "dfasfads", "Canesten");
+
         //Lista de resultados???
         List<ImageResult> testlist = new ArrayList<>();
         for (int i = 0; i < 20 ; i++) {
@@ -57,19 +71,7 @@ public class buscarActivity extends AppCompatActivity implements AdapterView.OnI
 
 
         recyclerView.setAdapter(adapter);
-        searchMedication.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                Toast.makeText(getBaseContext(),query, Toast.LENGTH_LONG).show();
-                return false;
-            }
 
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                Toast.makeText(getBaseContext(), newText, Toast.LENGTH_LONG).show();
-                return false;
-            }
-        });
 
     }
     //Función que obtiene las marcas de los medicamentos existentes
@@ -93,7 +95,35 @@ public class buscarActivity extends AppCompatActivity implements AdapterView.OnI
     public void search(View view) {
         vMarca = spn_marca.getSelectedItem().toString();
         vRadio = Integer.valueOf(spn_radio.getSelectedItem().toString());
+        vMedication = txtMedication.getText().toString();
+        if(vMarca.isEmpty()||spn_radio.getSelectedItem().toString().isEmpty()||vMedication.isEmpty()){
+            final String text = "Todos los campos deben contener la información requerida";
+            Toast.makeText(this, text, Toast.LENGTH_LONG).show();
+        } else {
+            //searchMedication(vMarca, vRadio, vMedication);
+        }
 
+    }
+    //Función que llama al layout con los resultados del medicamento a buscar????
+    public void searchMedication(String pMarca, String pRadio, String pMedication){
+        DatabaseReference QueryAssociazioni = FirebaseDatabase.getInstance().getReference("Pharmacy");
+        Query zonesQuery = QueryAssociazioni.orderByChild("nombre").equalTo(pMedication);
 
+        zonesQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                System.out.println("Info Gotit ");
+                Log.w(TAG, dataSnapshot.toString());
+                for (DataSnapshot zoneSnapshot: dataSnapshot.getChildren()) {
+                    System.out.println("The value is: ");
+                    Log.i(TAG, zoneSnapshot.child("nombre").getValue(String.class));
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.w(TAG, "onCancelled", databaseError.toException());
+            }
+        });
     }
 }

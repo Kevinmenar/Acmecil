@@ -10,7 +10,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import acmecil.project.projima.com.acmecil.R;
+import acmecil.project.projima.com.acmecil.model.Medicamento;
+import acmecil.project.projima.com.acmecil.model.Publicidad;
 
 public class PublicityActivity extends AppCompatActivity {
     String nameOwner, description, medication, url;
@@ -75,6 +81,28 @@ public class PublicityActivity extends AppCompatActivity {
         if (resultCode ==RESULT_OK){
             path=data.getData();
         }
+
+    }
+
+    private void createPublicity(String pOwner, String pDescription, String pMedication, String pUrl) {
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference();
+
+        DatabaseReference postsRef = ref.child("Ad");
+        DatabaseReference newPostRef = postsRef.push();
+        newPostRef.setValue(new Publicidad(pOwner, pDescription, pMedication, pUrl));
+    }
+
+    private void crearFarmacia() {
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference();
+
+        DatabaseReference postsRef = ref.child("Ad");
+        DatabaseReference newPostRef = postsRef.push();
+        //newPostRef.setValue(new Publicidad(pOwner, pDescription, pMedication, pUrl));
+    }
+
+    private void deleteUser(String userId) {
 
     }
 
