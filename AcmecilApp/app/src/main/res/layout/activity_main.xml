@@ -35,49 +35,11 @@
             android:text="Elija la opción que desea realizar:"
             android:textSize="24sp" />
 
-        <Button
-            android:id="@+id/btnSearchM"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:height="110dp"
-            android:background="@color/colorPrimaryDark"
-            android:text="Buscar medicamento"
-            android:textColor="@color/colorPrimary"
-            android:textSize="18sp" />
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="wrap_content"
+            android:layout_height="500dp"></ListView>
 
-        <Button
-            android:id="@+id/btnRegisterM"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:height="110dp"
-            android:background="@color/colorPrimaryDark"
-            android:text="Registrar medicamento"
-            android:textColor="@color/colorPrimary"
-            android:textSize="18sp" />
-
-        <Button
-            android:id="@+id/btnPublicity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:height="110dp"
-            android:background="@color/colorPrimaryDark"
-            android:text="Registrar publicidad"
-            android:textColor="@color/colorPrimary"
-            android:textSize="18sp" />
-
-        <Button
-            android:id="@+id/btnDeleteC"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:height="110dp"
-            android:background="@color/colorPrimaryDark"
-            android:text="Eliminar cuentas"
-            android:textColor="@color/colorPrimary"
-            android:textSize="18sp" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

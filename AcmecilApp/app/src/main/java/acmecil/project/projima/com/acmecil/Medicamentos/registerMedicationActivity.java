@@ -14,6 +14,7 @@ public class registerMedicationActivity extends AppCompatActivity {
     String name, marca;
     Float cost;
     Boolean estadoDolares, estadoColones;
+    int idPharmacy;
     private EditText nameM;
     private EditText marcaM;
     private EditText costM;
@@ -38,6 +39,7 @@ public class registerMedicationActivity extends AppCompatActivity {
         colones=(RadioButton) findViewById(R.id.rdoBtonColones);
         dolares= (RadioButton) findViewById(R.id.rdoBtonDolares);
         cancelM=(Button) findViewById(R.id.btonCancelar);
+        idPharmacy =(Integer)getIntent().getExtras().getSerializable("idPharmacy");
 
 
     }
@@ -59,10 +61,10 @@ public class registerMedicationActivity extends AppCompatActivity {
         name= nameM.getText().toString();
         marca = marcaM.getText().toString();
         cost = Float.valueOf(costM.getText().toString());
-        inscribirMedicamento(name,marca,cost, estadoColones,estadoDolares);
+        inscribirMedicamento(name,marca,cost, estadoColones,estadoDolares,idPharmacy);
     }
     //Agregar a la base de datos el medicamento
-    public void inscribirMedicamento(String pname, String pmarca, Float pcost, Boolean pcolones, Boolean pdolares){
+    public void inscribirMedicamento(String pname, String pmarca, Float pcost, Boolean pcolones, Boolean pdolares, int pidPharmacy){
 
     }
 
