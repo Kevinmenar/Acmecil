@@ -37,8 +37,12 @@
 
         <ListView
             android:id="@+id/listView"
+            style="@android:style/Widget.DeviceDefault.ExpandableListView"
             android:layout_width="wrap_content"
-            android:layout_height="500dp"></ListView>
+            android:layout_height="500dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/gradient"
+            android:cacheColorHint="@color/colorPrimary"></ListView>
 
     </LinearLayout>
 
