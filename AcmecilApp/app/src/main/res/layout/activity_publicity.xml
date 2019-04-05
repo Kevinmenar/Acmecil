@@ -12,31 +12,25 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="65dp"
             android:background="@drawable/gradient_background"
-            android:text="
-                      Añadir publicidad"
+            android:gravity="center"
+            android:text="Añadir publicidad"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/colorPrimaryDark" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"
-        android:orientation="vertical">
-
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="30sp" />
 
         <EditText
             android:id="@+id/txtOwner"
             style="@style/editText_style"
+            android:layout_marginTop="35dp"
             android:background="@drawable/border"
             android:hint="Nombre del propietario"
             android:inputType="textPersonName" />
@@ -59,7 +53,6 @@
             android:id="@+id/textView5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
 
         <EditText
             android:id="@+id/txtMedication"
@@ -139,7 +132,6 @@
             android:layout_width="match_parent"
             android:layout_height="36dp" />
 
-
         <Button
             android:id="@+id/btonCancelar"
             style="@style/Widget.AppCompat.Button"
@@ -152,6 +144,6 @@
             android:textColor="@color/colorPrimary"
             android:textSize="18sp" />
 
-
     </LinearLayout>
+
 </RelativeLayout>
