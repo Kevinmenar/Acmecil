@@ -20,14 +20,14 @@
         <activity android:name=".Medicamentos.buscarActivity" />
         <activity android:name=".Medicamentos.PublicityActivity" />
         <activity android:name=".Medicamentos.registerMedicationActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".login.LogInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".login.LogInActivity" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".login.RegisterActivity" />
         <activity android:name=".EliminarUsuario" />
     </application>

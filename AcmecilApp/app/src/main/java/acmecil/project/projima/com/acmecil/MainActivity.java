@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import acmecil.project.projima.com.acmecil.R;
 
 import acmecil.project.projima.com.acmecil.Medicamentos.*;
+import acmecil.project.projima.com.acmecil.login.LogInActivity;
 
 public class MainActivity extends AbsRuntimePermission {
 

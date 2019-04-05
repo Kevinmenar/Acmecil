@@ -5,7 +5,7 @@
     style="@style/Theme.AppCompat.NoActionBar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background"
+    android:background="@color/colorPrimary"
     android:paddingBottom="10dp"
     tools:context=".Medicamentos.registerMedicationActivity">
 
