@@ -22,6 +22,7 @@ public class registerMedicationActivity extends AppCompatActivity {
     Float cost;
     private String tipoMoneda;
     Boolean estadoDolares, estadoColones;
+    int idPharmacy;
     private EditText nameM;
     private EditText marcaM;
     private EditText costM;
@@ -46,7 +47,8 @@ public class registerMedicationActivity extends AppCompatActivity {
         colones=(RadioButton) findViewById(R.id.rdoBtonColones);
         dolares= (RadioButton) findViewById(R.id.rdoBtonDolares);
         cancelM=(Button) findViewById(R.id.btonCancelar);
-
+        Bundle bundle = getIntent().getExtras();
+        idPharmacy= bundle.getInt("idPharmacy");
 
     }
     public void validarMedicamento(View v){
@@ -76,7 +78,6 @@ public class registerMedicationActivity extends AppCompatActivity {
         DatabaseReference postsRef = ref.child("Medicamentos");
         DatabaseReference newPostRef = postsRef.push();
         newPostRef.setValue(new Medicamento(pname, pmarca, pTipoMoneda, pcost, pIdFarmacia, "False"));
-
     }
 
 

@@ -28,6 +28,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import acmecil.project.projima.com.acmecil.MainActivity;
+import acmecil.project.projima.com.acmecil.Medicamentos.SelectPharmacyActivity;
+import acmecil.project.projima.com.acmecil.Medicamentos.registerMedicationActivity;
 import acmecil.project.projima.com.acmecil.R;
 
 public class LogInActivity extends AppCompatActivity {
@@ -70,6 +73,7 @@ public class LogInActivity extends AppCompatActivity {
                 //if( ed1.getText().toString().equals("admin") && ed2.getText().toString().equals("admin")) {
                 if(respuesta){
                     Toast.makeText(getApplicationContext(),"Redirecting...",Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(LogInActivity.this, MainActivity.class);
                 }else{
                     Toast.makeText(getApplicationContext(), "WrongCredentials",Toast.LENGTH_SHORT).show();
 
@@ -80,6 +84,7 @@ public class LogInActivity extends AppCompatActivity {
         b3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //startActivity(new Intent(getApplicationContext(), SelectPharmacyActivity.class));
                 Intent intent = new Intent(LogInActivity.this, RegisterActivity.class);
                 startActivity(intent);
             }
