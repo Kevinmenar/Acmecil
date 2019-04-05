@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ChangePriceActivity"></activity>
+        <activity android:name=".Medicamentos.SelectPharmacyActivity"></activity>
+        <activity android:name=".ChangePriceActivity" />
         <activity android:name=".SearchResultMapActivity" />
         <activity android:name=".Medicamentos.buscarActivity" />
         <activity android:name=".Medicamentos.PublicityActivity" />
