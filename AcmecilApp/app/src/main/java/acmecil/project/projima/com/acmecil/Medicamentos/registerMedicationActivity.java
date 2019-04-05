@@ -39,8 +39,8 @@ public class registerMedicationActivity extends AppCompatActivity {
         colones=(RadioButton) findViewById(R.id.rdoBtonColones);
         dolares= (RadioButton) findViewById(R.id.rdoBtonDolares);
         cancelM=(Button) findViewById(R.id.btonCancelar);
-        idPharmacy =(Integer)getIntent().getExtras().getSerializable("idPharmacy");
-
+        Bundle bundle = getIntent().getExtras();
+        idPharmacy= bundle.getInt("idPharmacy");
 
     }
     public void validarMedicamento(View v){
