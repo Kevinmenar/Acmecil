@@ -1,7 +1,13 @@
 package acmecil.project.projima.com.acmecil.login;
 
+import android.content.Intent;
+import android.graphics.Paint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import acmecil.project.projima.com.acmecil.R;
 
@@ -15,7 +21,7 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inscribirse);
+        setContentView(R.layout.activity_register);
 
         final Intent intent = getIntent();
 
