@@ -5,14 +5,33 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import acmecil.project.projima.com.acmecil.R;
+import com.firebase.geofire.GeoFire;
+import com.firebase.geofire.GeoLocation;
+import com.firebase.geofire.GeoQuery;
+import com.google.firebase.FirebaseError;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
-public class PublicityActivity extends AppCompatActivity {
+import java.util.HashMap;
+import java.util.Map;
+
+import acmecil.project.projima.com.acmecil.R;
+import acmecil.project.projima.com.acmecil.model.Farmacia;
+import acmecil.project.projima.com.acmecil.model.Medicamento;
+import acmecil.project.projima.com.acmecil.model.Publicidad;
+
+public class PublicityActivity extends AppCompatActivity  {
     String nameOwner, description, medication, url;
     private EditText txt_nameOwner;
     private EditText txt_description;
@@ -21,6 +40,8 @@ public class PublicityActivity extends AppCompatActivity {
     private Uri path;
     private Button btn_confirmar;
     private Button btn_cancel;
+    private static final String TAG = "PublicityActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +97,99 @@ public class PublicityActivity extends AppCompatActivity {
             path=data.getData();
         }
 
+    }
+
+    private void createPublicity(String pOwner, String pDescription, String pMedication, String pUrl) {
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference();
+
+        DatabaseReference postsRef = ref.child("Ad");
+        DatabaseReference newPostRef = postsRef.push();
+        newPostRef.setValue(new Publicidad(pOwner, pDescription, pMedication, pUrl));
+    }
+
+    private void crearFarmacia(String name, GeoLocation localition) {
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference();
+
+        double latitud = localition.latitude;
+        double longitud = localition.longitude;
+        DatabaseReference postsRef = ref.child("Pharmacy");
+        DatabaseReference newPostRef = postsRef.push();
+        newPostRef.setValue(new Farmacia(name, latitud, longitud));
+    }
+
+    private void getMedicinas() {
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference();
+        Query myTopPostsQuery = ref.child("Medicamentos").orderByChild("state").equalTo("True");
+
+        myTopPostsQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    // TODO: handle the post
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+                // ...
+            }
+        });
+    }
+
+    private void getUsers() {
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference();
+        Query myTopPostsQuery = ref.child("Usuarios");
+
+        myTopPostsQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    // TODO: handle the post
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+                // ...
+            }
+        });
+    }
+
+    private void updateMedicamentoEstado(String pMedecineId) {
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference();
+
+        DatabaseReference refMedState = ref.child("Medicamentos").child(pMedecineId).child("state");
+        refMedState.setValue("False");
+    }
+
+    private void updateMedicamentoPrecio(String pMedecineId, float pPrecio) {
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference();
+
+        DatabaseReference refMedState = ref.child("Medicamentos").child(pMedecineId).child("state");
+        refMedState.setValue("True");
+
+        DatabaseReference refMedPrecio = ref.child("Medicamentos").child(pMedecineId).child("price");
+        refMedState.setValue(pPrecio);
+    }
+
+    private void deleteUser(String userId) {
+
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference();
+
+        DatabaseReference refMedFarm = ref.child("Usuarios").child("state");
+
+        refMedFarm.setValue("False");
     }
 
     public void cancel(View view) {

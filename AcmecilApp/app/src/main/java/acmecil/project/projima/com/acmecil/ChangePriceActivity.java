@@ -76,4 +76,8 @@ public class ChangePriceActivity extends AppCompatActivity {
         //Agregar campos pertinentes
     }
 
+    private void updatePrice() {
+
+    }
+
 }
