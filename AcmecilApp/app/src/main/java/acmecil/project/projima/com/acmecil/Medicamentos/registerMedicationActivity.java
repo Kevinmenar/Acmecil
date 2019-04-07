@@ -8,19 +8,11 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import acmecil.project.projima.com.acmecil.R;
-import acmecil.project.projima.com.acmecil.model.Medicamento;
 
 public class registerMedicationActivity extends AppCompatActivity {
     String name, marca;
     Float cost;
-    private String tipoMoneda;
     Boolean estadoDolares, estadoColones;
     int idPharmacy;
     private EditText nameM;
@@ -58,29 +50,23 @@ public class registerMedicationActivity extends AppCompatActivity {
         }
         else{
             if(colones.isChecked()){
-                tipoMoneda = "colones";
+                estadoColones = true;
+                estadoDolares = false;
             }
             if(dolares.isChecked()){
-                tipoMoneda = "dolares";
+                estadoDolares =true;
+                estadoColones = false;
             }
         }
         name= nameM.getText().toString();
         marca = marcaM.getText().toString();
         cost = Float.valueOf(costM.getText().toString());
-        inscribirMedicamento(name,marca,cost, tipoMoneda, "IdPharmacy");
+        inscribirMedicamento(name,marca,cost, estadoColones,estadoDolares,idPharmacy);
     }
     //Agregar a la base de datos el medicamento
-    public void inscribirMedicamento(String pname, String pmarca, Float pcost, String pTipoMoneda, String pIdFarmacia){
+    public void inscribirMedicamento(String pname, String pmarca, Float pcost, Boolean pcolones, Boolean pdolares, int pidPharmacy){
 
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference();
-
-        DatabaseReference postsRef = ref.child("Medicamentos");
-        DatabaseReference newPostRef = postsRef.push();
-        newPostRef.setValue(new Medicamento(pname, pmarca, pTipoMoneda, pcost, pIdFarmacia, "False"));
     }
-
-
 
     public void cancel(View view) {
         nameM.setText("");
