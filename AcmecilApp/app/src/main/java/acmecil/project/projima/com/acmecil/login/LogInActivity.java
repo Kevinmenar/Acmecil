@@ -25,6 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import acmecil.project.projima.com.acmecil.MainActivity;
 import acmecil.project.projima.com.acmecil.R;
+import acmecil.project.projima.com.acmecil.model.Publicidad;
 
 public class LogInActivity extends AppCompatActivity {
 
@@ -122,6 +123,15 @@ public class LogInActivity extends AppCompatActivity {
                 // ...
             }
         });
+    }
+
+    private void createPublicity(String pOwner, String pDescription, String pMedication, String pUrl) {
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference();
+
+        DatabaseReference postsRef = ref.child("Ad");
+        DatabaseReference newPostRef = postsRef.push();
+        newPostRef.setValue(new Publicidad(pOwner, pDescription, pMedication, pUrl));
     }
 
     private void logInByEmail(String email, String password) {
