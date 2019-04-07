@@ -40,7 +40,7 @@ public class SelectPharmacyActivity extends AppCompatActivity {
     }
     //Función que retorna un arreglo que el nombre de las farmacias sacado de la base de datos
     private String[] setPharmacy(){
-        String[] farmacias = new String[]{"1","2", "3","4","5","6"};
+        String[] farmacias = new String[]{" Farmacia Fischel Cartago Centro","Farmacia La Bomba Paraíso", "Farmacia Value Los Angeles","Farmacia AMPM","Farmacia Sucre"};
         return farmacias;
     }
     //Funcion que retorna el id del la farmacia que se encuentra en X posición
