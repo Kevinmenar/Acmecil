@@ -55,10 +55,14 @@ public class SearchResultMapActivity extends AppCompatActivity implements Permis
         Mapbox.getInstance(this, getString(R.string.mapbox_access_token));
         setContentView(R.layout.activity_search_result_map);
 
+
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         @SuppressLint("MissingPermission") Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         double longitude = location.getLongitude();
         double latitude = location.getLatitude();
+
+
+
 
         //Recupera la lista de resultados
         List<SearchResult> testlist = new ArrayList<>();
