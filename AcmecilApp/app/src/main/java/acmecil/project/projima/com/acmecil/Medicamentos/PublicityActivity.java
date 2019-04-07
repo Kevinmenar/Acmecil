@@ -112,7 +112,7 @@ public class PublicityActivity extends AppCompatActivity {
         newPostRef.setValue(new Farmacia(name, latitud, longitud));
     }
 
-    private void getMedicinasErrorPrice() {
+    private void getMedicinasMarcas() {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference();
         Query myTopPostsQuery = ref.child("Medicamentos");
@@ -144,6 +144,28 @@ public class PublicityActivity extends AppCompatActivity {
 
     private ArrayList<String> setArrayMarcas(ArrayList<String> pMarcas){
         return null;
+    }
+
+    private void getMedicinasErrorPrice() {
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference();
+        Query myTopPostsQuery = ref.child("Medicamentos").orderByChild("state").equalTo("True");
+
+        myTopPostsQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    // TODO: handle the post
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+                // ...
+            }
+        });
     }
 
     private void getUsers() {
