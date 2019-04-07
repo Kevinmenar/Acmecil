@@ -18,6 +18,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 import acmecil.project.projima.com.acmecil.R;
 import acmecil.project.projima.com.acmecil.model.Farmacia;
 import acmecil.project.projima.com.acmecil.model.Publicidad;
@@ -110,17 +112,25 @@ public class PublicityActivity extends AppCompatActivity {
         newPostRef.setValue(new Farmacia(name, latitud, longitud));
     }
 
-    private void getMedicinas() {
+    private void getMedicinasErrorPrice() {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference();
-        Query myTopPostsQuery = ref.child("Medicamentos").orderByChild("state").equalTo("True");
+        Query myTopPostsQuery = ref.child("Medicamentos");
 
         myTopPostsQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<String> list = new ArrayList<>(2);
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    System.out.println("Values: " + postSnapshot.child("marca").getValue());
+                    String marca = postSnapshot.child("marca").getValue(String.class);
+
+                    if(!(list.indexOf(marca) > 0)) {
+                        list.add(marca);
+                    }
                     // TODO: handle the post
                 }
+                setArrayMarcas(list);
             }
 
             @Override
@@ -130,6 +140,10 @@ public class PublicityActivity extends AppCompatActivity {
                 // ...
             }
         });
+    }
+
+    private ArrayList<String> setArrayMarcas(ArrayList<String> pMarcas){
+        return null;
     }
 
     private void getUsers() {
