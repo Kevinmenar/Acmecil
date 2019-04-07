@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import acmecil.project.projima.com.acmecil.AddPharmacyActivity;
 import acmecil.project.projima.com.acmecil.R;
 import acmecil.project.projima.com.acmecil.SearchResultMapActivity;
 
@@ -52,7 +53,7 @@ public class SelectPharmacyActivity extends AppCompatActivity {
     }
 
     public void newPharmacy(View view) {
-        startActivity(new Intent(getApplicationContext(), SearchResultMapActivity.class));
+            startActivity(new Intent(getApplicationContext(), AddPharmacyActivity.class));
     }
 }
 /*listView = findViewById(R.id.list_view_songs);
