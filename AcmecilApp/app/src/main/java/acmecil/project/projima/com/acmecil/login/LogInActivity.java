@@ -94,7 +94,7 @@ public class LogInActivity extends AppCompatActivity {
         System.out.println("Uid" + uid);
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference();
-        Query myTopPostsQuery = ref.child("Usuarios").child(uid );
+        Query myTopPostsQuery = ref.child("Usuarios").child(uid);
 
         myTopPostsQuery.addValueEventListener(new ValueEventListener() {
             @Override

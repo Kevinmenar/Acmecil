@@ -30,9 +30,9 @@ public class RegisterActivity extends AppCompatActivity {
 
     EditText ed1,ed2, ed3;
     Button b1,b2;
-    private static final String TAG = "RegisterActivity";
-    private FirebaseAuth mAuth;
 
+    private FirebaseAuth mAuth;
+    private static final String TAG = "RegisterActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
                 if(!ed1.getText().toString().isEmpty()&&!ed2.getText().toString().isEmpty()&&!ed3.getText().toString().isEmpty()){
                     if(ed2.getText().toString().equals(ed3.getText().toString())){
                         Toast.makeText(getApplicationContext(),"Creando usuario.",Toast.LENGTH_SHORT).show();//aqui se pone el create user
+                        createUserByEmail(ed1.getText().toString(), ed2.getText().toString());
                     }else{
                         Toast.makeText(getApplicationContext(),"La contraseñas no concuerdan.",Toast.LENGTH_SHORT).show();
                     }
@@ -81,7 +82,7 @@ public class RegisterActivity extends AppCompatActivity {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference();
 
-        ref.child("Usuarios").child(userId).setValue(new Usuario("Cliente", "Nombre", "True"));
+        ref.child("Usuarios").child(userId).setValue(new Usuario("User", "Nombre", "True"));
     }
 
     private void updateUser(String uid) {
