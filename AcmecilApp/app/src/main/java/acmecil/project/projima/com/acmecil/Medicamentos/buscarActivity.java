@@ -58,8 +58,6 @@ public class buscarActivity extends AppCompatActivity implements AdapterView.OnI
         spn_marca.setAdapter(aMarca);
         spn_radio.setAdapter(aRadio);
 
-        searchMedication("sdfasdf", 10, "Canesten", 9.5613377, -84.0452666);
-
         //Lista de resultados???
         List<ImageResult> testlist = new ArrayList<>();
         for (int i = 0; i < 20 ; i++) {
@@ -102,12 +100,10 @@ public class buscarActivity extends AppCompatActivity implements AdapterView.OnI
         if(vMarca.isEmpty()||spn_radio.getSelectedItem().toString().isEmpty()||vMedication.isEmpty()){
             final String text = "Todos los campos deben contener la información requerida";
             Toast.makeText(this, text, Toast.LENGTH_LONG).show();
-        } else {
-            //searchMedication(vMarca, vRadio, vMedication);
         }
 
     }
-
+    //Función que llama al layout con los resultados del medicamento a buscar????
     public double distance(double lat1, double lat2, double lon1, double lon2) {
 
         final int R = 6371; // Radius of the earth

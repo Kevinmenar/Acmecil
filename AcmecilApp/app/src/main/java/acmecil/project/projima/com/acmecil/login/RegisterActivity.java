@@ -1,9 +1,14 @@
 package acmecil.project.projima.com.acmecil.login;
 
+import android.content.Intent;
+import android.graphics.Paint;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -18,25 +23,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import android.content.Intent;
-import android.graphics.Paint;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
-
 import acmecil.project.projima.com.acmecil.R;
-import acmecil.project.projima.com.acmecil.model.Publicidad;
 import acmecil.project.projima.com.acmecil.model.Usuario;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private FirebaseAuth mAuth;
-    private static final String TAG = "RegisterActivity";
     EditText ed1,ed2, ed3;
     Button b1,b2;
+    private static final String TAG = "RegisterActivity";
+    private FirebaseAuth mAuth;
 
 
     @Override

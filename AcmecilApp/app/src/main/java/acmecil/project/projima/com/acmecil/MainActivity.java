@@ -93,7 +93,7 @@ public class MainActivity extends AbsRuntimePermission {
     }
 
     public void onclick(View view) {
-        Intent ListSong = new Intent(getApplicationContext(), buscarActivity.class);
+        Intent ListSong = new Intent(getApplicationContext(), registerMedicationActivity.class);
         startActivity(ListSong);
     }
 }
