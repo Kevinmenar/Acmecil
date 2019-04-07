@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddPharmacyActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_editor_absoluteX="0dp"
+        app:layout_editor_absoluteY="0dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="74sp"
+            android:text="Añadir Farmacia"
+            android:gravity="center"
+            android:background="@color/colorAccent"
+            android:textColor="@android:color/background_light"
+            android:textStyle="bold"
+            android:textSize="32sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre"
+                    android:layout_margin="10dp"
+                    android:textStyle="bold"
+                    android:textSize="32sp"/>
+
+                <EditText
+                    android:id="@+id/add_pharmacy_name_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/editText_style"
+                    android:background="@drawable/border"
+                    android:hint="de farmacia"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Direccion"
+                    android:layout_margin="10dp"
+                    android:textStyle="bold"
+                    android:textSize="32sp"/>
+
+                <EditText
+                    android:id="@+id/add_pharmacy_adress_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/editText_style"
+                    android:background="@drawable/border"
+                    android:hint="Canton, distrito, barrio"/>
+
+            </LinearLayout>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cardCornerRadius="2dp">
+
+                <FrameLayout
+                    android:id="@+id/container"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </android.support.v7.widget.CardView>
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/add_pharmacy_button"
+        android:layout_width="match_parent"
+        android:layout_height="74sp"
+        android:layout_marginBottom="0dp"
+        android:background="#C4C4C4"
+        android:gravity="center"
+        android:text="Añadir"
+        android:textColor="@android:color/background_light"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+</android.support.constraint.ConstraintLayout>
