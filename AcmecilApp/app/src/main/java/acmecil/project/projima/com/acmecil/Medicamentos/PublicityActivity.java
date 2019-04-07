@@ -168,6 +168,37 @@ public class PublicityActivity extends AppCompatActivity {
         });
     }
 
+    private void getPharmacies() {
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference();
+        Query myTopPostsQuery = ref.child("Pharmacy");
+
+        myTopPostsQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<Farmacia> farmacias = new ArrayList<>();
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    String nombre = postSnapshot.child("nombre").getValue(String.class);
+                    String id = postSnapshot.getKey();
+                    Farmacia farmacia = new Farmacia(nombre, id);
+                    farmacias.add(farmacia);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+                // ...
+            }
+        });
+    }
+
+    private ArrayList<Farmacia> farmaciasNameId(ArrayList<Farmacia> pFarmacias) {
+        // Logica aqui
+        return null;
+    }
+
     private void getUsers() {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference();

@@ -27,6 +27,7 @@ import java.util.ArrayList;
 
 import acmecil.project.projima.com.acmecil.MainActivity;
 import acmecil.project.projima.com.acmecil.R;
+import acmecil.project.projima.com.acmecil.model.Farmacia;
 import acmecil.project.projima.com.acmecil.model.Publicidad;
 
 public class LogInActivity extends AppCompatActivity {
@@ -88,7 +89,7 @@ public class LogInActivity extends AppCompatActivity {
     }
     private boolean log(String correo, String password){
         //Aqui se llama a base de datos con el email y la contraseña para verificar si coinciden
-        //getMedicinasErrorPrice();
+        //getPharmacies();
         logInByEmail(correo, password);
         return true;
     }
