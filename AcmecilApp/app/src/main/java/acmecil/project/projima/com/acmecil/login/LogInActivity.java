@@ -32,6 +32,7 @@ import acmecil.project.projima.com.acmecil.MainActivity;
 import acmecil.project.projima.com.acmecil.Medicamentos.SelectPharmacyActivity;
 import acmecil.project.projima.com.acmecil.Medicamentos.registerMedicationActivity;
 import acmecil.project.projima.com.acmecil.R;
+import acmecil.project.projima.com.acmecil.model.Usuario;
 
 public class LogInActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -53,11 +54,10 @@ public class LogInActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
 
-        logInByEmail("test@example.com", "test123");
         // Check if user is signed in (non-null) and update UI accordingly.
         // FirebaseUser currentUser = mAuth.getCurrentUser();
         // updateUI(currentUser);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_log_in);
 
         b1 = (Button)findViewById(R.id.button);
         ed1 = (EditText)findViewById(R.id.editText);
@@ -73,7 +73,7 @@ public class LogInActivity extends AppCompatActivity {
                 //if( ed1.getText().toString().equals("admin") && ed2.getText().toString().equals("admin")) {
                 if(respuesta){
                     Toast.makeText(getApplicationContext(),"Redirecting...",Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(LogInActivity.this, MainActivity.class);
+                    //Intent i = new Intent(LogInActivity.this, MainActivity.class);
                 }else{
                     Toast.makeText(getApplicationContext(), "WrongCredentials",Toast.LENGTH_SHORT).show();
 
@@ -93,20 +93,33 @@ public class LogInActivity extends AppCompatActivity {
     }
     private boolean log(String correo, String password){
         //Aqui se llama a base de datos con el email y la contraseña para verificar si coinciden
+        logInByEmail(correo, password);
         return true;
     }
 
     private void updateUI(FirebaseUser currentUser) {
         String uid = currentUser.getUid();
+        System.out.println("Uid" + uid);
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference();
-        Query myTopPostsQuery = ref.child("Usuarios").child(uid);
+        Query myTopPostsQuery = ref.child("Usuarios").child(uid );
 
         myTopPostsQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                    // TODO: handle the post
+                String state = dataSnapshot.child("state").getValue(String.class);
+                String nombre = dataSnapshot.child("nombre").getValue(String.class);
+                String rol = dataSnapshot.child("Role").getValue(String.class);
+
+                if(state.equals("True")) {
+                    System.out.println("Finish intent");
+                    if(rol.equals("User")) {
+                        Intent i = new Intent(LogInActivity.this, MainActivity.class);
+                        startActivity(i);
+                        System.out.println("Finish intent");
+                    } else {
+                        // call admin view
+                    }
                 }
             }
 
