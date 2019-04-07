@@ -101,7 +101,7 @@ public class LogInActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String state = dataSnapshot.child("state").getValue(String.class);
                 String nombre = dataSnapshot.child("nombre").getValue(String.class);
-                String rol = dataSnapshot.child("Role").getValue(String.class);
+                String rol = dataSnapshot.child("rol").getValue(String.class);
 
                 if(state.equals("True")) {
                     System.out.println("Finish intent");
