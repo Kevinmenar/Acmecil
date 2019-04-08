@@ -77,44 +77,15 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    private void updateUI(FirebaseUser pUser) {
+    private void updateUI(FirebaseUser pUser, String pEmail) {
         String userId = pUser.getUid();
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference();
 
-        ref.child("Usuarios").child(userId).setValue(new Usuario("User", "Nombre", "True"));
+        ref.child("Usuarios").child(userId).setValue(new Usuario("User", "Nombre", "True", pEmail));
     }
 
-    private void updateUser(String uid) {
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference();
-
-        ref.child("Usuarios").child(uid).child("state").setValue("False");
-    }
-
-    private void displayUser () {
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference();
-        Query myTopPostsQuery = ref.child("Usuarios");
-
-        myTopPostsQuery.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                    // TODO: handle the post
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Getting Post failed, log a message
-                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
-                // ...
-            }
-        });
-    }
-
-    private void createUserByEmail(String email, String password) {
+    private void createUserByEmail(final String email, String password) {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -123,13 +94,13 @@ public class RegisterActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
+                            updateUI(user, email);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
                             Toast.makeText(RegisterActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-                            updateUI(null);
+                            //updateUI(null);
                         }
 
                     }

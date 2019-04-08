@@ -1,5 +1,10 @@
 package acmecil.project.projima.com.acmecil.Medicamentos;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
+import android.location.Location;
+import android.location.LocationManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,8 +31,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import acmecil.project.projima.com.acmecil.MainActivity;
 import acmecil.project.projima.com.acmecil.R;
+import acmecil.project.projima.com.acmecil.SearchResultMapActivity;
 import acmecil.project.projima.com.acmecil.adapters.PublicityAdapter;
+import acmecil.project.projima.com.acmecil.login.LogInActivity;
+import acmecil.project.projima.com.acmecil.model.Farmacia;
 
 
 public class buscarActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
@@ -41,21 +50,26 @@ public class buscarActivity extends AppCompatActivity implements AdapterView.OnI
     Integer [] arrayRadio = new Integer[] {5, 15, 25, 35};
     String [] arrayMarca;
     private static final String TAG = "buscarActivity";
+    ArrayList<String> localListMarcas = new ArrayList<>();
+    ArrayList<SearchResult> searchResultsList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buscar);
-        arrayMarca = getArrayMarca();
+
+        getMedicinasMarcas();
+
+        //arrayMarca = getArrayMarca();
         spn_marca = (Spinner) findViewById(R.id.spinnerMarca);
         spn_radio = (Spinner) findViewById(R.id.spinnerRadio);
         txtMedication = (EditText) findViewById(R.id.editTxtBusqueda);
         spn_radio.setOnItemSelectedListener(this);
         spn_marca.setOnItemSelectedListener(this);
 
-        aMarca = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arrayMarca);
+        //aMarca = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, localListMarcas);
         aRadio= new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, arrayRadio);
-        spn_marca.setAdapter(aMarca);
+
         spn_radio.setAdapter(aRadio);
 
         //Lista de resultados???
@@ -100,6 +114,14 @@ public class buscarActivity extends AppCompatActivity implements AdapterView.OnI
         if(vMarca.isEmpty()||spn_radio.getSelectedItem().toString().isEmpty()||vMedication.isEmpty()){
             final String text = "Todos los campos deben contener la información requerida";
             Toast.makeText(this, text, Toast.LENGTH_LONG).show();
+        } else {
+            LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            @SuppressLint("MissingPermission") Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            double longitude = location.getLongitude();
+            double latitude = location.getLatitude();
+
+            searchMedication(vMarca, vRadio, vMedication, latitude, longitude);
+
         }
 
     }
@@ -120,8 +142,8 @@ public class buscarActivity extends AppCompatActivity implements AdapterView.OnI
     }
 
     //Función que llama al layout con los resultados del medicamento a buscar????
-    public void searchMedication(final String pMarca, double pRadio, String pMedication, final double pLatitud, final double pLongitud){
-        final DatabaseReference QueryAssociazioni = FirebaseDatabase.getInstance().getReference();
+    public void searchMedication(final String pMarca, final int pRadio, String pMedication, final double pLatitud, final double pLongitud){
+        DatabaseReference QueryAssociazioni = FirebaseDatabase.getInstance().getReference();
         Query zonesQuery = QueryAssociazioni.child("Medicamentos").orderByChild("nombre").equalTo(pMedication);
 
         zonesQuery.addValueEventListener(new ValueEventListener() {
@@ -129,29 +151,40 @@ public class buscarActivity extends AppCompatActivity implements AdapterView.OnI
             public void onDataChange(DataSnapshot dataSnapshot) {
                 System.out.println("Info Gotit ");
                 Log.w(TAG, dataSnapshot.toString());
-                for (DataSnapshot zoneSnapshot: dataSnapshot.getChildren()) {
-                    System.out.println("The value is: ");
+                for (final DataSnapshot zoneSnapshot: dataSnapshot.getChildren()) {
+                    System.out.println("The value is: " + zoneSnapshot);
                     Log.i(TAG, zoneSnapshot.child("nombre").getValue(String.class));
 
-                    Map<String, Object> valuesMap = (HashMap<String, Object>) dataSnapshot.getValue();
-
                     // Get push id value.
-                    String marca = (String) valuesMap.get("marca");
+                    final String marca = zoneSnapshot.child("marca").getValue(String.class);
+                    final String precio = zoneSnapshot.child("price").getValue(String.class);
+                    final String nombre = zoneSnapshot.child("nombre").getValue(String.class);
+
                     if (marca == pMarca) {
-                        String keyIdFarmacia = (String) valuesMap.get("idFarmacia");
-                        Query Famacias = QueryAssociazioni.child("Medicamentos").child(keyIdFarmacia);
+                        String keyIdFarmacia = zoneSnapshot.child("idFarmacia").getValue(String.class);
+                        System.out.println("keyIdFarmacia " + keyIdFarmacia);
+                        DatabaseReference QueryFarmacia = FirebaseDatabase.getInstance().getReference();
+                        Query Famacias = QueryFarmacia.child("Pharmacy").child(keyIdFarmacia);
 
                         Famacias.addValueEventListener(new ValueEventListener() {
 
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                for (DataSnapshot zoneSnapshot: dataSnapshot.getChildren()) {
-                                    Map<String, Object> valuesMap = (HashMap<String, Object>) dataSnapshot.getValue();
 
-                                    double latitud = (double) valuesMap.get("latitud");
-                                    double longitud = (double) valuesMap.get("longitud");
+                                if(dataSnapshot!=null){
+                                    String nombre = dataSnapshot.child("nombre").getValue(String.class);
+                                    String direccion = dataSnapshot.child("direccion").getValue(String.class);
+                                    double latitud = dataSnapshot.child("latitud").getValue(double.class);
+                                    double longitud = dataSnapshot.child("longitud").getValue(double.class);
+                                    Farmacia farmacia = new Farmacia(nombre, latitud, longitud, direccion);
+                                    SearchResult searchResult = new SearchResult("", "", "", nombre , Integer.valueOf(precio), farmacia);
 
                                     double distance = distance(pLatitud, latitud, pLongitud, longitud);
+                                    System.out.println("distance " + distance);
+
+                                    if(pRadio>=distance) {
+                                        searchResultsList.add(searchResult);
+                                    }
                                 }
                             }
 
@@ -161,10 +194,15 @@ public class buscarActivity extends AppCompatActivity implements AdapterView.OnI
                             }
                         });
                     }
-
-
-
                 }
+
+                //  Logic here
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("List", searchResultsList);
+                Intent i = new Intent(buscarActivity.this, SearchResultMapActivity.class);
+                i.putExtra("x", bundle);
+                startActivity(i);
+
             }
 
             @Override
@@ -172,5 +210,40 @@ public class buscarActivity extends AppCompatActivity implements AdapterView.OnI
                 Log.w(TAG, "onCancelled", databaseError.toException());
             }
         });
+    }
+
+    private void getMedicinasMarcas() {
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference();
+        Query myTopPostsQuery = ref.child("Medicamentos");
+
+        myTopPostsQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<String> list = new ArrayList<>(2);
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    System.out.println("Values: " + postSnapshot.child("marca").getValue());
+                    String marca = postSnapshot.child("marca").getValue(String.class);
+
+                    if(!(list.indexOf(marca) > 0)) {
+                        list.add(marca);
+                    }
+                    // TODO: handle the post
+                }
+                setArrayMarcas(list);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+                // ...
+            }
+        });
+    }
+
+    private void setArrayMarcas(ArrayList<String> pMarcas){
+        aMarca = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, pMarcas);
+        spn_marca.setAdapter(aMarca);
     }
 }

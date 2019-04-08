@@ -45,7 +45,7 @@ public class MainActivity extends AbsRuntimePermission {
                             startActivity(intent);
                         }
                         else if (position==1){
-                            Intent intent= new Intent(getApplicationContext(),registerMedicationActivity.class);
+                            Intent intent= new Intent(getApplicationContext(),SelectPharmacyActivity.class);
                             startActivity(intent);
                         }
 
@@ -65,7 +65,7 @@ public class MainActivity extends AbsRuntimePermission {
                             startActivity(intent);
                         }
                         else if(position==1){
-                            Intent intent= new Intent(getApplicationContext(),registerMedicationActivity.class);
+                            Intent intent= new Intent(getApplicationContext(),SelectPharmacyActivity.class);
                             startActivity(intent);
                         }
                         else if (position==2){

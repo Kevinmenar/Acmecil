@@ -5,11 +5,13 @@ public class Farmacia {
     public double latitud;
     public double longitud;
     public String id;
+    public String direccion;
 
-    public Farmacia (String pNombre, double pLatitud, double pLongitud) {
+    public Farmacia (String pNombre, double pLatitud, double pLongitud, String pDireccion) {
         this.nombre = pNombre;
         this.latitud = pLatitud;
         this.longitud = pLongitud;
+        this.direccion = pDireccion;
     }
 
     public Farmacia (String pNombre, String pId) {

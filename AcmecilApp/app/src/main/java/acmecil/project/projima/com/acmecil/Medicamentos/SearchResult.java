@@ -1,29 +1,55 @@
 package acmecil.project.projima.com.acmecil.Medicamentos;
 
-public class SearchResult {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
+import acmecil.project.projima.com.acmecil.model.Farmacia;
+
+public class SearchResult implements Serializable{
 
     private String pharmacyName;
     private String pharmacyAdress;
     private int price;
     private String imagePath;
     private String medicineName;
+    private Farmacia farmacia;
 
 
-    public SearchResult(String pharmacyName, String pharmacyAdress, String imagePath, String medicineName ,int price){
+    public SearchResult(String pharmacyName, String pharmacyAdress, String imagePath, String medicineName ,int price, Farmacia pFarmacia){
         this.imagePath = imagePath;
         this.pharmacyAdress =pharmacyAdress;
         this.price = price;
         this.pharmacyName = pharmacyName;
         this.medicineName = medicineName;
+        this.farmacia = pFarmacia;
+    }
+
+
+    protected SearchResult(Parcel in) {
+        pharmacyName = in.readString();
+        pharmacyAdress = in.readString();
+        price = in.readInt();
+        imagePath = in.readString();
+        medicineName = in.readString();
     }
 
 
     public String getPharmacyAdress() {
-        return pharmacyAdress;
+        return farmacia.direccion;
     }
 
     public String getPharmacyName() {
-        return pharmacyName;
+        return farmacia.nombre;
+    }
+
+    public double getLatitud() {
+        return farmacia.latitud;
+    }
+
+    public double getLongitud() {
+        return farmacia.longitud;
     }
 
     public int getPrice() {
@@ -49,4 +75,5 @@ public class SearchResult {
     public void setMedicineName(String medicineName) {
         this.medicineName = medicineName;
     }
+
 }
