@@ -78,7 +78,7 @@ public class buscarActivity extends AppCompatActivity implements AdapterView.OnI
             testlist.add(new ImageResult(String.format("j %d", i)));
         }
 
-        PublicityAdapter adapter = new PublicityAdapter(testlist);
+        PublicityAdapter adapter = new PublicityAdapter(testlist,this);
         RecyclerView recyclerView = findViewById(R.id.search_results_recycler_view);
 
 
