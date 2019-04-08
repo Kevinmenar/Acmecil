@@ -20,8 +20,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import acmecil.project.projima.com.acmecil.MainActivity;
 import acmecil.project.projima.com.acmecil.R;
+import acmecil.project.projima.com.acmecil.login.LogInActivity;
 import acmecil.project.projima.com.acmecil.model.Farmacia;
+import acmecil.project.projima.com.acmecil.model.Medicamento;
 import acmecil.project.projima.com.acmecil.model.Publicidad;
 
 public class PublicityActivity extends AppCompatActivity {
@@ -66,7 +69,7 @@ public class PublicityActivity extends AppCompatActivity {
         nameOwner = txt_nameOwner.getText().toString();
         description =txt_description.getText().toString();
         medication = txt_medication.getText().toString();
-        registrarPublicidad(nameOwner,description,medication);
+        createPublicity(nameOwner,description,medication,url);
     }
     //Ingresar el la base de datos la publicidad
     public void registrarPublicidad(String powner, String pdescription, String pmedication){
@@ -99,9 +102,12 @@ public class PublicityActivity extends AppCompatActivity {
         DatabaseReference postsRef = ref.child("Ad");
         DatabaseReference newPostRef = postsRef.push();
         newPostRef.setValue(new Publicidad(pOwner, pDescription, pMedication, pUrl));
+
+        Intent i = new Intent(PublicityActivity.this, MainActivity.class);
+        startActivity(i);
     }
 
-    private void crearFarmacia(String name, double pLatitud, double pLongitud) {
+    private void crearFarmacia(String name, double pLatitud, double pLongitud, String direccion) {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference();
 
@@ -109,41 +115,7 @@ public class PublicityActivity extends AppCompatActivity {
         double longitud = pLongitud;
         DatabaseReference postsRef = ref.child("Pharmacy");
         DatabaseReference newPostRef = postsRef.push();
-        newPostRef.setValue(new Farmacia(name, latitud, longitud));
-    }
-
-    private void getMedicinasMarcas() {
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference();
-        Query myTopPostsQuery = ref.child("Medicamentos");
-
-        myTopPostsQuery.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                ArrayList<String> list = new ArrayList<>(2);
-                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                    System.out.println("Values: " + postSnapshot.child("marca").getValue());
-                    String marca = postSnapshot.child("marca").getValue(String.class);
-
-                    if(!(list.indexOf(marca) > 0)) {
-                        list.add(marca);
-                    }
-                    // TODO: handle the post
-                }
-                setArrayMarcas(list);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Getting Post failed, log a message
-                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
-                // ...
-            }
-        });
-    }
-
-    private ArrayList<String> setArrayMarcas(ArrayList<String> pMarcas){
-        return null;
+        newPostRef.setValue(new Farmacia(name, latitud, longitud, direccion));
     }
 
     private void getMedicinasErrorPrice() {
@@ -154,61 +126,19 @@ public class PublicityActivity extends AppCompatActivity {
         myTopPostsQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                    // TODO: handle the post
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Getting Post failed, log a message
-                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
-                // ...
-            }
-        });
-    }
-
-    private void getPharmacies() {
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference();
-        Query myTopPostsQuery = ref.child("Pharmacy");
-
-        myTopPostsQuery.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                ArrayList<Farmacia> farmacias = new ArrayList<>();
+                ArrayList<Medicamento> medicinas = new ArrayList<>();
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                     String nombre = postSnapshot.child("nombre").getValue(String.class);
                     String id = postSnapshot.getKey();
-                    Farmacia farmacia = new Farmacia(nombre, id);
-                    farmacias.add(farmacia);
-                }
-            }
+                    String marca = postSnapshot.child("marca").getValue(String.class);
+                    String moneda = postSnapshot.child("moneda").getValue(String.class);
+                    float price = postSnapshot.child("price").getValue(float.class);
+                    String idFarmacia = postSnapshot.child("idFarmacia").getValue(String.class);
+                    String state = postSnapshot.child("state").getValue(String.class);
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Getting Post failed, log a message
-                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
-                // ...
-            }
-        });
-    }
+                    Medicamento medicina = new Medicamento(nombre, marca, moneda, price, idFarmacia, state, id);
 
-    private ArrayList<Farmacia> farmaciasNameId(ArrayList<Farmacia> pFarmacias) {
-        // Logica aqui
-        return null;
-    }
-
-    private void getUsers() {
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference();
-        Query myTopPostsQuery = ref.child("Usuarios");
-
-        myTopPostsQuery.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                    // TODO: handle the post
+                    medicinas.add(medicina);
                 }
             }
 
@@ -251,9 +181,7 @@ public class PublicityActivity extends AppCompatActivity {
     }
 
     public void cancel(View view) {
-        txt_nameOwner.setText("");
-        txt_url.setText("");
-        txt_medication.setText("");
-        txt_description.setText("");
+        Intent i = new Intent(PublicityActivity.this, MainActivity.class);
+        startActivity(i);
     }
 }

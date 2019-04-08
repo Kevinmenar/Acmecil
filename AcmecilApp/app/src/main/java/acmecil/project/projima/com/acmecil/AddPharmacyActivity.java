@@ -22,6 +22,7 @@ import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.geojson.Feature;
 import com.mapbox.geojson.Point;
+import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
@@ -48,6 +49,7 @@ public class AddPharmacyActivity extends AppCompatActivity implements Permission
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Mapbox.getInstance(this, R.string.mapbox_access_token);
         setContentView(R.layout.activity_add_pharmacy);
 
         pharmacyNameEditTex = findViewById(R.id.add_pharmacy_name_edit_text);

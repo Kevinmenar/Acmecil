@@ -1,4 +1,5 @@
 package acmecil.project.projima.com.acmecil.Medicamentos;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,7 +12,9 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import acmecil.project.projima.com.acmecil.MainActivity;
 import acmecil.project.projima.com.acmecil.R;
+import acmecil.project.projima.com.acmecil.login.LogInActivity;
 import acmecil.project.projima.com.acmecil.model.Medicamento;
 
 public class registerMedicationActivity extends AppCompatActivity {
@@ -68,17 +71,22 @@ public class registerMedicationActivity extends AppCompatActivity {
     }
     //Agregar a la base de datos el medicamento
     public void inscribirMedicamento(String pname, String pmarca, Float pcost, String pTipoMoneda, String pidPharmacy){
+
+        System.out.println("pidPharmacy " + pidPharmacy);
+
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference();
 
         DatabaseReference postsRef = ref.child("Medicamentos");
         DatabaseReference newPostRef = postsRef.push();
         newPostRef.setValue(new Medicamento(pname, pmarca, pTipoMoneda, pcost, pidPharmacy, "False"));
+
+        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(i);
     }
 
     public void cancel(View view) {
-        nameM.setText("");
-        marcaM.setText("");
-        costM.setText("");
+        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(i);
     }
 }

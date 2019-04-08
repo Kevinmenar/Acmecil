@@ -25,10 +25,14 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import acmecil.project.projima.com.acmecil.Controller;
 import acmecil.project.projima.com.acmecil.MainActivity;
 import acmecil.project.projima.com.acmecil.R;
 import acmecil.project.projima.com.acmecil.model.Farmacia;
 import acmecil.project.projima.com.acmecil.model.Publicidad;
+
+import static acmecil.project.projima.com.acmecil.Controller.Role.ADMINISTRATOR;
+import static acmecil.project.projima.com.acmecil.Controller.Role.COMMON_USER;
 
 public class LogInActivity extends AppCompatActivity {
 
@@ -111,11 +115,14 @@ public class LogInActivity extends AppCompatActivity {
                 if(state.equals("True")) {
                     System.out.println("Finish intent");
                     if(rol.equals("User")) {
+                        Controller.getInstance().setSessionRole(COMMON_USER);
                         Intent i = new Intent(LogInActivity.this, MainActivity.class);
                         startActivity(i);
                         System.out.println("Finish intent");
                     } else {
-                        // call admin view
+                        Controller.getInstance().setSessionRole(ADMINISTRATOR);
+                        Intent i = new Intent(LogInActivity.this, MainActivity.class);
+                        startActivity(i);
                     }
                 }
             }
@@ -153,7 +160,8 @@ public class LogInActivity extends AppCompatActivity {
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
                             Toast.makeText(LogInActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-                            updateUI(null);
+                            Toast.makeText(getApplicationContext(), "WrongCredentials",Toast.LENGTH_SHORT).show();
+                            //updateUI(null);
                         }
 
                         // ...
