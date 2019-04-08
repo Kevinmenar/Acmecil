@@ -66,12 +66,9 @@ public class PublicityActivity extends AppCompatActivity {
         nameOwner = txt_nameOwner.getText().toString();
         description =txt_description.getText().toString();
         medication = txt_medication.getText().toString();
-        registrarPublicidad(nameOwner,description,medication);
+        createPublicity(nameOwner,description,medication,url);
     }
-    //Ingresar el la base de datos la publicidad
-    public void registrarPublicidad(String powner, String pdescription, String pmedication){
 
-    }
 
 
     public void clickImage(View view) {

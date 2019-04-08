@@ -39,21 +39,23 @@ public class buscarActivity extends AppCompatActivity implements AdapterView.OnI
     ArrayAdapter<Integer> aRadio;
     EditText txtMedication;
     Integer [] arrayRadio = new Integer[] {5, 15, 25, 35};
-    String [] arrayMarca;
+ //   String [] arrayMarca;
+    ArrayList<String> list = new ArrayList<>(2);
     private static final String TAG = "buscarActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buscar);
-        arrayMarca = getArrayMarca();
+     //   arrayMarca = getArrayMarca();
+        getMedicinasMarcas();
         spn_marca = (Spinner) findViewById(R.id.spinnerMarca);
         spn_radio = (Spinner) findViewById(R.id.spinnerRadio);
         txtMedication = (EditText) findViewById(R.id.editTxtBusqueda);
         spn_radio.setOnItemSelectedListener(this);
         spn_marca.setOnItemSelectedListener(this);
 
-        aMarca = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arrayMarca);
+        aMarca = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
         aRadio= new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, arrayRadio);
         spn_marca.setAdapter(aMarca);
         spn_radio.setAdapter(aRadio);
@@ -74,6 +76,35 @@ public class buscarActivity extends AppCompatActivity implements AdapterView.OnI
         recyclerView.setAdapter(adapter);
 
 
+    }
+    private void getMedicinasMarcas() {
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference();
+        Query myTopPostsQuery = ref.child("Medicamentos");
+
+        myTopPostsQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    System.out.println("Values: " + postSnapshot.child("marca").getValue());
+                    String marca = postSnapshot.child("marca").getValue(String.class);
+
+                    if(!(list.indexOf(marca) > 0)) {
+                        list.add(marca);
+                    }
+                    // TODO: handle the post
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+                // ...
+            }
+        });
     }
     //Función que obtiene las marcas de los medicamentos existentes
     public String[] getArrayMarca(){
