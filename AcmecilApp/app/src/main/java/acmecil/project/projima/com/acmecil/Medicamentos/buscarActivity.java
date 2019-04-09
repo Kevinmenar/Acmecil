@@ -120,97 +120,19 @@ public class buscarActivity extends AppCompatActivity implements AdapterView.OnI
             double longitude = location.getLongitude();
             double latitude = location.getLatitude();
 
-            searchMedication(vMarca, vRadio, vMedication, latitude, longitude);
+
+            Intent i = new Intent(buscarActivity.this, SearchResultMapActivity.class);
+            i.putExtra("log", longitude);
+            i.putExtra("lat", latitude);
+            i.putExtra("marca", vMarca);
+            i.putExtra("radio", vRadio);
+            i.putExtra("Medication", vMedication);
+            startActivity(i);
 
         }
 
     }
     //Función que llama al layout con los resultados del medicamento a buscar????
-    public double distance(double lat1, double lat2, double lon1, double lon2) {
-
-        final int R = 6371; // Radius of the earth
-
-        double latDistance = Math.toRadians(lat2 - lat1);
-        double lonDistance = Math.toRadians(lon2 - lon1);
-        double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
-                + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2))
-                * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
-        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        double distance = R * c * 1000; // convert to meters
-
-        return distance;
-    }
-
-    //Función que llama al layout con los resultados del medicamento a buscar????
-    public void searchMedication(final String pMarca, final int pRadio, String pMedication, final double pLatitud, final double pLongitud){
-        DatabaseReference QueryAssociazioni = FirebaseDatabase.getInstance().getReference();
-        Query zonesQuery = QueryAssociazioni.child("Medicamentos").orderByChild("nombre").equalTo(pMedication);
-
-        zonesQuery.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                System.out.println("Info Gotit ");
-                Log.w(TAG, dataSnapshot.toString());
-                for (final DataSnapshot zoneSnapshot: dataSnapshot.getChildren()) {
-                    System.out.println("The value is: " + zoneSnapshot);
-                    Log.i(TAG, zoneSnapshot.child("nombre").getValue(String.class));
-
-                    // Get push id value.
-                    final String marca = zoneSnapshot.child("marca").getValue(String.class);
-                    final String precio = zoneSnapshot.child("price").getValue(String.class);
-                    final String nombre = zoneSnapshot.child("nombre").getValue(String.class);
-
-                    if (marca == pMarca) {
-                        String keyIdFarmacia = zoneSnapshot.child("idFarmacia").getValue(String.class);
-                        System.out.println("keyIdFarmacia " + keyIdFarmacia);
-                        DatabaseReference QueryFarmacia = FirebaseDatabase.getInstance().getReference();
-                        Query Famacias = QueryFarmacia.child("Pharmacy").child(keyIdFarmacia);
-
-                        Famacias.addValueEventListener(new ValueEventListener() {
-
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                                if(dataSnapshot!=null){
-                                    String nombre = dataSnapshot.child("nombre").getValue(String.class);
-                                    String direccion = dataSnapshot.child("direccion").getValue(String.class);
-                                    double latitud = dataSnapshot.child("latitud").getValue(double.class);
-                                    double longitud = dataSnapshot.child("longitud").getValue(double.class);
-                                    Farmacia farmacia = new Farmacia(nombre, latitud, longitud, direccion);
-                                    SearchResult searchResult = new SearchResult("", "", "", nombre , Integer.valueOf(precio), farmacia);
-
-                                    double distance = distance(pLatitud, latitud, pLongitud, longitud);
-                                    System.out.println("distance " + distance);
-
-                                    if(pRadio>=distance) {
-                                        searchResultsList.add(searchResult);
-                                    }
-                                }
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                            }
-                        });
-                    }
-                }
-
-                //  Logic here
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("List", searchResultsList);
-                Intent i = new Intent(buscarActivity.this, SearchResultMapActivity.class);
-                i.putExtra("x", bundle);
-                startActivity(i);
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.w(TAG, "onCancelled", databaseError.toException());
-            }
-        });
-    }
 
     private void getMedicinasMarcas() {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
