@@ -104,6 +104,7 @@
         android:textColor="@android:color/background_light"
         android:textSize="32sp"
         android:textStyle="bold"
+        android:onClick="insertPharmacy"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 

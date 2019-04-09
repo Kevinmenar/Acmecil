@@ -12,12 +12,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.geojson.Feature;
@@ -36,6 +39,8 @@ import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
 
 import java.util.List;
 
+import acmecil.project.projima.com.acmecil.model.Farmacia;
+
 public class AddPharmacyActivity extends AppCompatActivity implements PermissionsListener {
 
     private MapboxMap mapboxMap;
@@ -44,12 +49,13 @@ public class AddPharmacyActivity extends AppCompatActivity implements Permission
     public EditText pharmacyAdressEditTex;
     public Button insertPharmacyButton;
     boolean pNameIsEmpty, pAdressIsEmpty;
+    double lat, longi;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Mapbox.getInstance(this, R.string.mapbox_access_token);
+        Mapbox.getInstance(this, getString(R.string.mapbox_access_token));
         setContentView(R.layout.activity_add_pharmacy);
 
         pharmacyNameEditTex = findViewById(R.id.add_pharmacy_name_edit_text);
@@ -65,7 +71,7 @@ public class AddPharmacyActivity extends AppCompatActivity implements Permission
                 if(s.toString().trim().length()==0){
                     pNameIsEmpty = true;
                 }else {
-                    pAdressIsEmpty = false;
+                    pNameIsEmpty = false;
                 }
                 changeButton();
             }
@@ -87,7 +93,7 @@ public class AddPharmacyActivity extends AppCompatActivity implements Permission
                 if(s.toString().trim().length()==0){
                     pAdressIsEmpty = true;
                 }else {
-                    pNameIsEmpty = false;
+                    pAdressIsEmpty = false;
                 }
                 changeButton();
             }
@@ -146,6 +152,8 @@ public class AddPharmacyActivity extends AppCompatActivity implements Permission
                         @SuppressLint("MissingPermission") Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                         double longitude = location.getLongitude();
                         double latitude = location.getLatitude();
+                        longi = longitude;
+                        lat = latitude;
                         style.addImage("marker-icon-id",
                                 BitmapFactory.decodeResource(
                                         AddPharmacyActivity.this.getResources(), R.drawable.mapbox_marker_icon_default));
@@ -167,10 +175,12 @@ public class AddPharmacyActivity extends AppCompatActivity implements Permission
     }
 
     private void changeButton(){
-        if (!(pNameIsEmpty || pAdressIsEmpty)){
+        if (!pNameIsEmpty && !pAdressIsEmpty){
+            Log.i("Input", "Aceptado");
             insertPharmacyButton.setEnabled(true);
             insertPharmacyButton.setBackgroundColor(Color.parseColor("#C4C4C4"));
         }else{
+            Log.i("Input", "nel");
             insertPharmacyButton.setEnabled(false);
             insertPharmacyButton.setBackgroundColor(Color.parseColor("#C4C4C4"));
         }
@@ -179,6 +189,9 @@ public class AddPharmacyActivity extends AppCompatActivity implements Permission
     public void insertPharmacy(View view){
         // TODO: obtener localización del pin, obtener datos
 
+        String nombre = pharmacyNameEditTex.getText().toString();
+        String direccion = pharmacyAdressEditTex.getText().toString();
+        crearFarmacia(nombre, lat, longi, direccion);
     }
 
 
@@ -192,4 +205,16 @@ public class AddPharmacyActivity extends AppCompatActivity implements Permission
     public void onPermissionResult(boolean granted) {
 
     }
+
+    private void crearFarmacia(String name, double pLatitud, double pLongitud, String direccion) {
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference();
+
+        double latitud = pLatitud;
+        double longitud = pLongitud;
+        DatabaseReference postsRef = ref.child("Pharmacy");
+        DatabaseReference newPostRef = postsRef.push();
+        newPostRef.setValue(new Farmacia(name, latitud, longitud, direccion));
+    }
+
 }

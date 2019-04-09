@@ -107,16 +107,7 @@ public class PublicityActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    private void crearFarmacia(String name, double pLatitud, double pLongitud, String direccion) {
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference();
 
-        double latitud = pLatitud;
-        double longitud = pLongitud;
-        DatabaseReference postsRef = ref.child("Pharmacy");
-        DatabaseReference newPostRef = postsRef.push();
-        newPostRef.setValue(new Farmacia(name, latitud, longitud, direccion));
-    }
 
     private void getMedicinasErrorPrice() {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -149,25 +140,6 @@ public class PublicityActivity extends AppCompatActivity {
                 // ...
             }
         });
-    }
-
-    private void updateMedicamentoEstado(String pMedecineId) {
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference();
-
-        DatabaseReference refMedState = ref.child("Medicamentos").child(pMedecineId).child("state");
-        refMedState.setValue("False");
-    }
-
-    private void updateMedicamentoPrecio(String pMedecineId, float pPrecio) {
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference();
-
-        DatabaseReference refMedState = ref.child("Medicamentos").child(pMedecineId).child("state");
-        refMedState.setValue("True");
-
-        DatabaseReference refMedPrecio = ref.child("Medicamentos").child(pMedecineId).child("price");
-        refMedState.setValue(pPrecio);
     }
 
     private void deleteUser(String userId) {

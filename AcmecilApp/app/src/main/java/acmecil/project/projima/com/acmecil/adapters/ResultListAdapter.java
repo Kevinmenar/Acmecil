@@ -57,6 +57,7 @@ public class ResultListAdapter extends RecyclerView.Adapter<ResultListAdapter.Ph
                         i.putExtra("lastPrice", list.get(position).getPrice());
                         i.putExtra("medicineName",list.get(position).getMedicineName());
                         i.putExtra("pharmacyName", list.get(position).getPharmacyName());
+                        i.putExtra("medicineID", list.get(position).getMedID());
                         context.startActivity(i);
                         //TODO: Abrir Dialog con EditText
                     }
@@ -69,6 +70,12 @@ public class ResultListAdapter extends RecyclerView.Adapter<ResultListAdapter.Ph
                 holder.editPrice.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        Intent i = new Intent(context, ChangePriceActivity.class);
+                        i.putExtra("lastPrice", list.get(position).getPrice());
+                        i.putExtra("medicineName",list.get(position).getMedicineName());
+                        i.putExtra("pharmacyName", list.get(position).getPharmacyName());
+                        i.putExtra("medicineID", list.get(position).getMedID());
+                        context.startActivity(i);
                         //TODO: Abrir Dialog con EditTex
                     }
                 });

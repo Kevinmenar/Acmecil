@@ -15,15 +15,17 @@ public class SearchResult implements Serializable{
     private String imagePath;
     private String medicineName;
     private Farmacia farmacia;
+    private String medID;
 
 
-    public SearchResult(String pharmacyName, String pharmacyAdress, String imagePath, String medicineName ,int price, Farmacia pFarmacia){
+    public SearchResult(String pharmacyName, String pharmacyAdress, String imagePath, String medicineName ,int price, Farmacia pFarmacia, String medID){
         this.imagePath = imagePath;
         this.pharmacyAdress =pharmacyAdress;
         this.price = price;
         this.pharmacyName = pharmacyName;
         this.medicineName = medicineName;
         this.farmacia = pFarmacia;
+        this.medID = medID;
     }
 
 
@@ -76,4 +78,7 @@ public class SearchResult implements Serializable{
         this.medicineName = medicineName;
     }
 
+    public String getMedID() {
+        return medID;
+    }
 }

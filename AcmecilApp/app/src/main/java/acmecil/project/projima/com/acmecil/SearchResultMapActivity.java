@@ -114,7 +114,7 @@ public class SearchResultMapActivity extends AppCompatActivity implements Permis
                 mapboxMap.setStyle(Style.OUTDOORS, new Style.OnStyleLoaded() {
                     @Override
                     public void onStyleLoaded(@NonNull Style style) {
-                        //enableLocationComponent(style);
+                        enableLocationComponent(style);
                         style.addImage("marker-icon-id",
                                 BitmapFactory.decodeResource(
                                         SearchResultMapActivity.this.getResources(), R.drawable.mapbox_marker_icon_default));
@@ -169,6 +169,7 @@ public class SearchResultMapActivity extends AppCompatActivity implements Permis
                     final String marca = zoneSnapshot.child("marca").getValue(String.class);
                     final String precio = zoneSnapshot.child("price").getValue(String.class);
                     final String nombre = zoneSnapshot.child("nombre").getValue(String.class);
+                    final String mediD = zoneSnapshot.getKey();
 
                     System.out.println("Marca " + marca);
                     System.out.println("pMarca " + pMarca);
@@ -190,7 +191,7 @@ public class SearchResultMapActivity extends AppCompatActivity implements Permis
                                     double latitud = dataSnapshot.child("latitud").getValue(double.class);
                                     double longitud = dataSnapshot.child("longitud").getValue(double.class);
                                     Farmacia farmacia = new Farmacia(nombre, latitud, longitud, direccion);
-                                    SearchResult searchResult = new SearchResult("", "", "", nombre , Integer.valueOf(precio), farmacia);
+                                    SearchResult searchResult = new SearchResult("", "", "", nombre , Integer.valueOf(precio), farmacia, mediD);
                                     testlist.add(searchResult);
                                     double distance = distance(pLatitud, latitud, pLongitud, longitud);
                                     System.out.println("distance " + distance);

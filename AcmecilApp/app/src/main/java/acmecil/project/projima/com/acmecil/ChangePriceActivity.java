@@ -8,6 +8,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import acmecil.project.projima.com.acmecil.Medicamentos.MedicineDTO;
 
 public class ChangePriceActivity extends AppCompatActivity {
@@ -17,6 +20,7 @@ public class ChangePriceActivity extends AppCompatActivity {
     private TextView lastPriceTextView;
     private TextView pharmacyName;
     private Button confirmButton;
+    private String medID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +37,7 @@ public class ChangePriceActivity extends AppCompatActivity {
         titleView.setText(bundle.getString("medicineName"));
         lastPriceTextView.setText(String.format("¢ %d",bundle.getInt("lastPrice")));
         pharmacyName.setText(bundle.getString("pharmacyName"));
+        medID = bundle.getString("medicineID");
         switch (Controller.getInstance().getSessionRole()){
             case ADMINISTRATOR:{
                 confirmButton.setText("Confirmar");
@@ -43,28 +48,66 @@ public class ChangePriceActivity extends AppCompatActivity {
                 break;
             }
         }
+
+
+
+
     }
 
 
     public void OnButtonChangePrice(View view){
         String content = newPriceEditText.getText().toString();
         String lastPrice = lastPriceTextView.getText().toString();
+        float precio = Float.parseFloat(content);
         if(content.matches("") || content.equals(lastPrice)){
             Toast.makeText(this,"Debe introducir un nuevo precio",Toast.LENGTH_SHORT).show();
             return;
         }
-        fillDTO();
         switch (Controller.getInstance().getSessionRole()){
             case COMMON_USER:{
-                Controller.getInstance().reportPrice();
+                update(Controller.Role.COMMON_USER, medID, precio);
                 break;
             }
             case ADMINISTRATOR:{
-                Controller.getInstance().changePrice();
+                update(Controller.Role.ADMINISTRATOR, medID, precio);
                 break;
             }
         }
     }
+
+    private void update(Controller.Role User, String medID, float precio) {
+        switch (User){
+            case COMMON_USER:{
+                updateMedicamentoEstado(medID);
+                break;
+            }
+            case ADMINISTRATOR:{
+                updateMedicamentoPrecio(medID,precio);
+                break;
+            }
+        }
+    }
+
+
+    private void updateMedicamentoEstado(String pMedecineId) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference();
+
+        DatabaseReference refMedState = ref.child("Medicamentos").child(pMedecineId).child("state");
+        refMedState.setValue("False");
+    }
+
+    private void updateMedicamentoPrecio(String pMedecineId, float pPrecio) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference();
+
+        DatabaseReference refMedState = ref.child("Medicamentos").child(pMedecineId).child("state");
+        refMedState.setValue("True");
+
+        DatabaseReference refMedPrecio = ref.child("Medicamentos").child(pMedecineId).child("price");
+        refMedState.setValue(pPrecio);
+    }
+
 
     private void fillDTO(){
         String newPriceString = newPriceEditText.getText().toString();
