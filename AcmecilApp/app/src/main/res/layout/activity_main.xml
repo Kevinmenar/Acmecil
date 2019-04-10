@@ -20,7 +20,8 @@
                 android:id="@+id/txtWelcome"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:background="@drawable/gradient"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="@color/colorPrimary"
                 android:gravity="center"
                 android:text="ACMECiL"
                 android:textSize="@dimen/mtrl_bottomappbar_height" />
@@ -39,9 +40,9 @@
             android:id="@+id/listView"
             style="@android:style/Widget.DeviceDefault.ExpandableListView"
             android:layout_width="wrap_content"
-            android:layout_height="500dp"
+            android:layout_height="match_parent"
             android:layout_marginTop="20dp"
-            android:background="@drawable/gradient"
+            android:background="@color/colorPrimary"
             android:cacheColorHint="@color/colorPrimary"></ListView>
 
     </LinearLayout>

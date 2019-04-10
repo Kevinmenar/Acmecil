@@ -67,9 +67,16 @@ public class buscarActivity extends AppCompatActivity implements AdapterView.OnI
         spn_radio.setOnItemSelectedListener(this);
         spn_marca.setOnItemSelectedListener(this);
 
-        //aMarca = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, localListMarcas);
+
+        aMarca = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, localListMarcas);
         aRadio= new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, arrayRadio);
 
+
+        aMarca.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        aRadio.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
+        spn_marca.setAdapter(aMarca);
         spn_radio.setAdapter(aRadio);
 
         //Lista de resultados???
